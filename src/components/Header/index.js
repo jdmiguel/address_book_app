@@ -15,4 +15,8 @@ Header.propTypes = {
   withFinder: PropTypes.bool,
 };
 
+Header.defaultProps = {
+  withFinder: false,
+};
+
 export default Header;

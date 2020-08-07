@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Header should render without Finder 1`] = `
+<header
+  class="basic"
+>
+  <div
+    class="container"
+  >
+    <h1>
+      ADDRESS BOOK
+    </h1>
+  </div>
+</header>
+`;
