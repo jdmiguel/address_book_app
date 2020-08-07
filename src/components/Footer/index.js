@@ -8,6 +8,7 @@ const {
 
 const Footer = () => (
   <footer>
+    <div />
     <div className="container">
       <p>
         <a href={urlLink}>{textLink}</a>

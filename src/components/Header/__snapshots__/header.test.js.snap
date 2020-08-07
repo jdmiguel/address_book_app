@@ -11,5 +11,6 @@ exports[`Component: Header should render without Finder 1`] = `
       ADDRESS BOOK
     </h1>
   </div>
+  <div />
 </header>
 `;

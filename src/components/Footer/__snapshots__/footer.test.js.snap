@@ -2,6 +2,7 @@
 
 exports[`Component: Footer should render 1`] = `
 <footer>
+  <div />
   <div
     class="container"
   >

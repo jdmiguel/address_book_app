@@ -8,6 +8,7 @@ const Header = ({ withFinder }) => (
     <div className="container">
       <h1>{literals.title}</h1>
     </div>
+    <div />
   </header>
 );
 

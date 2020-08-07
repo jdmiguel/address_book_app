@@ -1,13 +1,7 @@
 import React from 'react';
 
-import Header from './Header';
-import Footer from './Footer';
+import Layout from './Layout';
 
-const App = () => (
-  <div className="app">
-    <Header withFinder />
-    <Footer />
-  </div>
-);
+const App = () => <Layout> This is the layout content</Layout>;
 
 export default App;

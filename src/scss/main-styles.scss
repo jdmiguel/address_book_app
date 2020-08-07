@@ -3,11 +3,10 @@ body {
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 15px;
 }
-
 h1{
   font-size: 1.8rem;
   font-weight: 500;
-  color: $white;
+  color: $primaryLight;
   letter-spacing: 0.2rem;
   margin-bottom: 10px;
   @media only screen and (min-width: 768px) {
@@ -17,4 +16,16 @@ h1{
   @media only screen and (min-width: 1200px) {
     font-size: 2.4rem;
   }
+}
+.layout{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+main{
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto 100px;
+  padding-top: 110px;
 }

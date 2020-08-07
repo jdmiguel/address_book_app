@@ -1,11 +1,20 @@
 footer{
-  padding: 15px 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  background-color: $primaryDark;
+  background-color: $grey;
   > div {
     display: flex;
     justify-content: center;
     color: $light;
+    &:first-of-type{
+      background-color: $white;
+      height: 20px;
+    }
+    &:last-of-type{
+      padding: 15px 0;
+    }
   }
   p{
     display: flex;
@@ -18,7 +27,18 @@ footer{
     margin-bottom: 2px;
     position: relative;
     overflow: hidden;
-    @media only screen and (min-width: 768px) {
+  }
+  @media only screen and (min-width: 768px) {
+    > div {
+      &:first-of-type{
+        height: 30px;
+      }
+    }
+    a{
+      color: $secondary;
+      margin-bottom: 2px;
+      position: relative;
+      overflow: hidden;
       &::after {
         content: "";
         width: 100%;
@@ -35,6 +55,6 @@ footer{
           transform:  translateX(0);
         }
       }
-    }
+    } 
   }
 }
