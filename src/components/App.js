@@ -4,7 +4,7 @@ import Header from './Header';
 
 const App = () => (
   <div className="app">
-    <Header />
+    <Header withFinder />
   </div>
 );
 
