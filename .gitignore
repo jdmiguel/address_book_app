@@ -1,0 +1,7 @@
+# Editors
+.vscode
+
+# dependencies
+/node_modules
+/dist
+yarn-error.log

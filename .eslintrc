@@ -1,0 +1,30 @@
+{
+  "extends": ["./eslint-config.js"],
+  "plugins": ["react", "prettier", "react-hooks"],
+
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error", "log"] }],
+    "linebreak-style": "off",
+    "indent": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": [
+      "error",
+      {
+        "tabWidth": 2,
+        "singleQuote": true,
+        "jsxBracketSameLine": false
+      }
+    ],
+    "react/require-default-props": 0,
+    "react/prop-types": 0,
+    "react/no-find-dom-node": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-shadow": 0,
+    "no-restricted-syntax": 0
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  }
+}
