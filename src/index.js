@@ -4,6 +4,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import reducer from './store/reducer';
 
+import './scss/index.scss';
+
 import App from './components/App';
 
 const store = configureStore({
