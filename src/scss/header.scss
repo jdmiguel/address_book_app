@@ -10,10 +10,7 @@ header {
   height: 130px;
   > div{
     &:first-of-type{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include flexContainer($direction: column);
       height: 100%;
     }
     &:last-of-type{
@@ -22,6 +19,9 @@ header {
     }
   }
   &.basic{
+    h1{
+      margin-bottom: 0;
+    }
     > div{
       justify-content: center;
     }

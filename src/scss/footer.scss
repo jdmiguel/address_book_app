@@ -5,10 +5,7 @@ footer{
   width: 100%;
   background-color: $black;
   > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexContainer($direction: column);
     color: $lightGrey;
     &:first-of-type{
       background-color: $white;
@@ -19,9 +16,9 @@ footer{
     }
   }
   a{
-    font-size: 1.2rem;
-    line-height: 1rem;
-    color: $primary;
+    @include font(1.2rem, 400, $primary);
+    @include flexContainer();
+    line-height: 1.2rem;
     margin-bottom: 8px;
     position: relative;
     overflow: hidden;
@@ -47,7 +44,7 @@ footer{
         left: 0;
         bottom: 0;
         background: $primary;
-        transition: transform 0.25s ease-out;
+        @include transition(transform, 0.25s);
         transform: translateX(-130px);
       }
       &:hover {

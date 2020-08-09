@@ -2,11 +2,10 @@ body {
   font-display: auto;
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 15px;
+  font-weight: 300;
 }
 h1{
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: $primaryLight;
+  @include font(1.8rem, 500, $primaryLight);
   letter-spacing: 0.2rem;
   margin-bottom: 10px;
   @media only screen and (min-width: 768px) {
@@ -18,8 +17,7 @@ h1{
   }
 }
 .layout{
-  display: flex;
-  flex-direction: column;
+  @include flexContainer($rowAlign: flex-start,$columnAlign: flex-start, $direction: column);
   min-height: 100vh;
   position: relative;
 }
