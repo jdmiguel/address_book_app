@@ -45,13 +45,31 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|svg)$/,
+        test: /\.(png|jpg)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: 'img/[name].[ext]',
             },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: {
+                  removeViewBox: false,
+                },
+              },
+            },
+          },
+          {
+            loader: 'file-loader',
           },
         ],
       },

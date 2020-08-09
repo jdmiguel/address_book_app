@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import App from './App';
+import Footer from '.';
 
-describe('Component: App', () => {
+describe('Component: Footer', () => {
   it('should render', () => {
-    const { container } = render(<App />);
+    const { container } = render(<Footer />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
