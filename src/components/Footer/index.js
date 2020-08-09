@@ -1,21 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { literals } from '../../utils/constants';
+import { literals, settingsIcon, homeIcon } from '../../utils/constants';
 
 const {
-  footer: { text, textLink, urlLink },
+  footer: {
+    text,
+    link: { settingsText, settingsLink, homeText, homeLink },
+  },
 } = literals;
 
-const Footer = () => (
+const Footer = ({ withSettings }) => (
   <footer>
     <div />
     <div className="container">
-      <p>
-        <a href={urlLink}>{textLink}</a>
-        {text}
-      </p>
+      <a href={withSettings ? settingsLink : homeLink}>
+        <img src={withSettings ? settingsIcon : homeIcon} alt="icon" />
+        {withSettings ? settingsText : homeText}
+      </a>
+      {text}
     </div>
   </footer>
 );
+
+Footer.propTypes = {
+  withSettings: PropTypes.bool,
+};
+
+Footer.defaultProps = {
+  withSettings: false,
+};
 
 export default Footer;
