@@ -15,7 +15,10 @@ const Footer = ({ withSettings }) => (
     <div />
     <div className="container">
       <a href={withSettings ? settingsLink : homeLink}>
-        <img src={withSettings ? settingsIcon : homeIcon} alt="icon" />
+        <img
+          src={withSettings ? String(settingsIcon) : String(homeIcon)}
+          alt="icon"
+        />
         {withSettings ? settingsText : homeText}
       </a>
       {text}

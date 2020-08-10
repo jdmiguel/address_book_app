@@ -1,7 +1,12 @@
 import React from 'react';
 
 import Layout from './Layout';
+import PageTitle from './PageTitle';
 
-const App = () => <Layout> This is the layout content</Layout>;
+const App = () => (
+  <Layout>
+    <PageTitle text="Contact list" />
+  </Layout>
+);
 
 export default App;

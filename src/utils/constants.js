@@ -17,4 +17,7 @@ export const literals = {
       homeLink: '/',
     },
   },
+  homePage: {
+    title: 'Contact list',
+  },
 };

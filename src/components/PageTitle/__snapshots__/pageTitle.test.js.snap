@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: PageTitle should render 1`] = `
+<h2>
+  Default page title
+</h2>
+`;
