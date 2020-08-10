@@ -6,6 +6,7 @@ module.exports = {
   ].map(require.resolve),
 
   globals: {
+    jest: true,
     describe: true,
     it: true,
     expect: true,

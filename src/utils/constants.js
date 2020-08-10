@@ -39,3 +39,4 @@ export const userCardData = {
   cardSecondLine: 'purpleelephant787',
   cardThirdLine: 'alba.caballero@example.com',
 };
+export const nationalityCardText = 'Spanish';
