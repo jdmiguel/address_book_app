@@ -1,42 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Layout from './Layout';
 import Card from './Card';
 
-import pathImg from '../assets/img/spain-flag.png';
-
-const cardImgSrc = 'https://randomuser.me/api/portraits/med/women/52.jpg';
-const cardData = {
-  cardFirstLine: 'Alba Caballero',
-  cardSecondLine: 'purpleelephant787',
-  cardThirdLine: 'alba.caballero@example.com',
-};
-
-const App = () => (
+const App = ({ nationalities }) => (
   <Layout>
     <div className="container">
       <div className="row">
-        <Card
-          id="28443430-601b-4608-a0ef-db12c062a3ce"
-          imgSrc={cardImgSrc}
-          data={cardData}
-          onClick={(id) => {
-            console.log(id);
-          }}
-          isActive
-        />
-        <Card
-          id="spanish"
-          imgSrc={pathImg}
-          data="Spanish"
-          onClick={(id) => {
-            console.log(id);
-          }}
-          isHighlight
-        />
+        {nationalities.map((nationality) => (
+          <Card
+            key={nationality.text}
+            id={nationality.text}
+            imgSrc={nationality.img}
+            data={nationality.text}
+            onClick={(id) => {
+              console.log(id);
+            }}
+            isHighlight
+            isActive={nationality.active}
+          />
+        ))}
       </div>
     </div>
   </Layout>
 );
 
-export default App;
+const mapStateToProps = ({ nationalities }) => ({ nationalities });
+
+export default connect(mapStateToProps)(App);
