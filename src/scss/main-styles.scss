@@ -3,6 +3,7 @@ body, button {
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 15px;
   font-weight: 300;
+  color: $black;
 } 
 
 h1{
@@ -61,4 +62,22 @@ main{
 button {
   width: 100%;
   cursor: pointer;
+}
+
+input{
+  padding: 15px 10px;
+  background-color: $white;
+  border-radius: 4px;
+  width: 400px;
+  max-width: 100%;
+  color: $primaryDark;
+  &.disabled{
+    background-color: $darkWhite;
+    opacity: 0.9;
+  }
+}
+
+::placeholder {
+  color: $grey;
+  font-weight: 300;
 }

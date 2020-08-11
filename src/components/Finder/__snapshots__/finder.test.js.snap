@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Finder should render and call onChange function 1`] = `
+<input
+  autocomplete="nope"
+  class="disabled"
+  disabled=""
+  placeholder="Finder is disabled while users are loading..."
+/>
+`;

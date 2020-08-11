@@ -29,8 +29,10 @@ header {
   @media only screen and (min-width: 768px) {
     height: 120px;
     > div{
-      flex-direction: row;
-      justify-content: space-between;
+      &:first-of-type{
+        flex-direction: row;
+        justify-content: space-between;
+      }
       &:last-of-type{
         height: 30px;
       }

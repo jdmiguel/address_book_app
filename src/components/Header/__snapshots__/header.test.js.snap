@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: Header should render with Finder 1`] = `
+<header
+  class=""
+>
+  <div
+    class="container"
+  >
+    <h1>
+      ADDRESS BOOK
+    </h1>
+    <input
+      autocomplete="nope"
+      class="disabled"
+      disabled=""
+      placeholder="Finder is disabled while users are loading..."
+    />
+  </div>
+  <div />
+</header>
+`;
+
 exports[`Component: Header should render without Finder 1`] = `
 <header
   class="basic"

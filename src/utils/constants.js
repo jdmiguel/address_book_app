@@ -29,6 +29,10 @@ export const literals = {
   },
   homePageTitle: 'Contact list',
   settingsPageTitle: 'Choose any nationality',
+  finder: {
+    enabledText: 'Start typing to filter by user...',
+    disabledText: 'Finder is disabled while users are loading...',
+  },
 };
 
 // mocks
