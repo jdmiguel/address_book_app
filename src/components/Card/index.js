@@ -6,7 +6,7 @@ const Card = ({ id, imgSrc, data, isHighlight, isActive, onClick }) => (
     <div className={`card${isActive ? ' active' : ''}`}>
       <button type="button" onClick={() => onClick(id)}>
         <div className="card-image">
-          <img src={imgSrc} alt="card detail" />
+          <img className="shadow-img" src={imgSrc} alt="card detail" />
         </div>
         <div className="card-text">
           {isHighlight ? (

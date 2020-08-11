@@ -16,7 +16,7 @@ describe('Component: Card', () => {
     const { container } = render(
       <Card
         id={userCardData.cardFirstLine}
-        imgSrc={String(userImgSrc)}
+        imgSrc={userImgSrc}
         data={userCardData}
         onClick={handleClick}
       />,
@@ -37,7 +37,7 @@ describe('Component: Card', () => {
     const { container } = render(
       <Card
         id={nationalityCardText}
-        imgSrc={String(spainFlag)}
+        imgSrc={spainFlag}
         data={nationalityCardText}
         onClick={() => {}}
         isHighlight
