@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { literals, settingsIcon, homeIcon } from '../../utils/constants';
+import { literals, settingsIcon, homeIcon } from '../../../utils/constants';
 
 const {
   footer: {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import Layout from './Layout';
-import Card from './Card';
-import Modal from './Modal';
+import Layout from './layout';
+import Card from './core/Card';
+import Modal from './core/Modal';
 
 import {
   userThumbSrc,

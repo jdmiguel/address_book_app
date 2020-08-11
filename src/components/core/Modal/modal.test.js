@@ -3,7 +3,11 @@ import { render, fireEvent } from '@testing-library/react';
 
 import Modal from '.';
 
-import { userImgSrc, userModalData, modalIcons } from '../../utils/constants';
+import {
+  userImgSrc,
+  userModalData,
+  modalIcons,
+} from '../../../utils/constants';
 
 describe('Component: Modal', () => {
   it('should render and call onClose function', () => {

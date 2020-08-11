@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { literals } from '../../utils/constants';
+import { literals } from '../../../utils/constants';
 
 const {
   finder: { enabledText, disabledText },

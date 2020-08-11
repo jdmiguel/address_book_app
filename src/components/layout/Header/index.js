@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Finder from '../Finder';
+import Finder from '../../core/Finder';
 
-import { literals } from '../../utils/constants';
+import { literals } from '../../../utils/constants';
 
 const Header = ({ withFinder }) => (
   <header className={!withFinder ? 'basic' : ''}>
