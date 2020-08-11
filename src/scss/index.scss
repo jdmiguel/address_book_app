@@ -1,9 +1,9 @@
 @import "./utils/vars";
 @import "./utils/mixins";
 @import "./utils/reset";
-@import "./bootstrap/bootstrap-grid";
-@import "./main-styles";
-@import "./modal";
-@import "./header";
-@import "./footer";
-@import "./card";
+@import "./utils/bootstrap/bootstrap-grid";
+@import "./core/modal";
+@import "./core/card";
+@import "./layout/header";
+@import "./layout/footer";
+@import "./main";
