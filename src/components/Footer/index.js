@@ -7,12 +7,13 @@ const {
   footer: {
     text,
     link: { settingsText, settingsLink, homeText, homeLink },
+    warning,
   },
 } = literals;
 
-const Footer = ({ withSettings }) => (
-  <footer>
-    <div />
+const Footer = ({ withWarning, withSettings }) => (
+  <footer className={withWarning ? 'withWarning' : ''}>
+    <div>{withWarning && warning}</div>
     <div className="container">
       <a href={withSettings ? settingsLink : homeLink}>
         <img src={withSettings ? settingsIcon : homeIcon} alt="icon" />
@@ -24,10 +25,12 @@ const Footer = ({ withSettings }) => (
 );
 
 Footer.propTypes = {
+  withWarning: PropTypes.bool,
   withSettings: PropTypes.bool,
 };
 
 Footer.defaultProps = {
+  withWarning: false,
   withSettings: false,
 };
 

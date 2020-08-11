@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Card should render nationality card 1`] = `
+<div
+  class="col-12 col-md-6 col-xl-3"
+>
+  <div
+    class="card"
+  >
+    <button
+      type="button"
+    >
+      <div
+        class="card-image"
+      >
+        <img
+          alt="card detail"
+          class="shadow-img"
+          src="[object Object]"
+        />
+      </div>
+      <div
+        class="card-text"
+      >
+        <h3>
+          Spanish
+        </h3>
+      </div>
+      <div />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Component: Card should render user card and call onClick function 1`] = `
+<div
+  class="col-12 col-md-6 col-xl-4"
+>
+  <div
+    class="card"
+  >
+    <button
+      type="button"
+    >
+      <div
+        class="card-image"
+      >
+        <img
+          alt="card detail"
+          class="shadow-img"
+          src="https://randomuser.me/api/portraits/women/52.jpg"
+        />
+      </div>
+      <div
+        class="card-text"
+      >
+        <h4>
+          Alba Caballero
+        </h4>
+        <p>
+          purpleelephant787
+        </p>
+        <p>
+          alba.caballero@example.com
+        </p>
+      </div>
+      <div />
+    </button>
+  </div>
+</div>
+`;

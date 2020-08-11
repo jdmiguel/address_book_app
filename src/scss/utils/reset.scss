@@ -13,6 +13,7 @@ section,
 figure,
 div,
 header,
+input,
 ul,
 li {
   margin: 0;
@@ -39,7 +40,7 @@ a {
   }
 }
 
-button {
+button, input {
   background: transparent;
   border: none;
   outline: none;

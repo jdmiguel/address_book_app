@@ -9,4 +9,10 @@ describe('Component: Header', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it('should render with Finder', () => {
+    const { container } = render(<Header withFinder />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });

@@ -1,0 +1,105 @@
+.modal-overlay{
+  @include flexContainer($direction: column);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color:rgba(255, 255, 255, 0.7);
+}
+
+.modal{
+  width: 420px;
+  max-width: 90%;
+  height: auto;
+  background-color:$primaryDark;
+  padding: 15px;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+}
+
+.modal-close{
+  float: right;
+  margin-bottom: 5px;
+  button{
+    border-radius: 50%;
+    background-color:$primary;
+    padding: 0 8px 1px;
+    @include font(1.15rem, 500, $primaryDark);
+    @media only screen and (min-width: 768px) {
+      padding: 0 9px 3px;
+      font-size: 1.3rem;
+      @include transition(background-color, 0.25s);
+      &:hover{
+        background-color:$primaryLight;
+      }
+    }
+  }
+}
+
+.modal-content{
+  clear: right;
+  @include flexContainer($direction: column);
+  > div {
+    color: $lightGrey;
+    width: 100%;
+    &:first-of-type{
+      padding-bottom: 18px;
+      border-bottom: 1px solid $primary;
+      @include flexContainer($mainAxisAlign: space-evenly);
+      img{
+        width: 70px;
+        @media only screen and (min-width: 768px) {
+          width: 110px;
+        }
+      }
+      p{
+        @include font(0.9rem, 400, $darkWhite);
+        &:first-of-type{
+          margin-bottom: 6px;
+        }
+        &:last-of-type{
+          font-size: 0.8rem;
+        }
+        @media only screen and (min-width: 768px) {
+          font-size: 1.1rem;
+          &:last-of-type{
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+    &:last-of-type{
+      @include flexContainer($direction: column, $crossAxisAlign: flex-start);
+      padding: 18px 0;
+      @include font(1rem, 400, $darkWhite);
+      img{
+        width: 16px;
+        margin-right: 5px;
+      }
+      p{
+        @include flexContainer($crossAxisAlign: flex-start);
+        margin-bottom: 5px;
+      }
+      @media only screen and (min-width: 768px) {
+        align-items: center;
+        font-size: 1.15rem;
+        img{
+          width: 18px;
+        }
+        p{
+          align-items: center;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  h3{
+    font-size: 1rem;
+    @media only screen and (min-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -5,9 +5,9 @@ import Footer from './Footer';
 
 const Layout = ({ children }) => (
   <div className="layout">
-    <Header />
+    <Header withFinder />
     <main>{children}</main>
-    <Footer withSettings />
+    <Footer />
   </div>
 );
 

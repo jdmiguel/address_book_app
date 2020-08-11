@@ -1,7 +1,7 @@
-@mixin flexContainer($rowAlign:center,$columnAlign:center,$direction:row,$wrap:nowrap){
+@mixin flexContainer($mainAxisAlign:center,$crossAxisAlign:center,$direction:row,$wrap:nowrap){
   display: flex;
-  justify-content: $rowAlign;
-  align-items: $columnAlign;
+  justify-content: $mainAxisAlign;
+  align-items: $crossAxisAlign;
   flex-direction: $direction;
   flex-wrap: $wrap;
 }

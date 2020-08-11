@@ -16,7 +16,7 @@ footer{
     }
   }
   a{
-    @include font(1.2rem, 400, $primary);
+    @include font(1.2rem, 500, $primary);
     @include flexContainer();
     line-height: 1.2rem;
     margin-bottom: 8px;
@@ -27,6 +27,16 @@ footer{
     img{
       margin-right: 4px;
       width: 20px;
+    }
+  }
+  &.withWarning{
+    > div {
+      &:first-of-type{
+        background-color: $grey;
+        padding: 10px 0;
+        height: auto;
+        @include font(0.95rem, 500, $white);
+      }
     }
   }
   @media only screen and (min-width: 768px) {
