@@ -7,7 +7,7 @@ const Layout = ({ children }) => (
   <div className="layout">
     <Header withFinder />
     <main>{children}</main>
-    <Footer withSettings />
+    <Footer />
   </div>
 );
 

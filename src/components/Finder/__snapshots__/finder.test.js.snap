@@ -3,8 +3,7 @@
 exports[`Component: Finder should render and call onChange function 1`] = `
 <input
   autocomplete="nope"
-  class="disabled"
-  disabled=""
-  placeholder="Finder is disabled while users are loading..."
+  class=""
+  placeholder="Start typing to filter by user..."
 />
 `;

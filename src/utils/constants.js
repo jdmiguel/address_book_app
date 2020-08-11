@@ -26,12 +26,13 @@ export const literals = {
       homeText: 'Back to Home',
       homeLink: '/',
     },
+    warning: 'While finder is active, users will not be loaded',
   },
   homePageTitle: 'Contact list',
   settingsPageTitle: 'Choose any nationality',
   finder: {
     enabledText: 'Start typing to filter by user...',
-    disabledText: 'Finder is disabled while users are loading...',
+    disabledText: 'Finder is disabled while users are loading',
   },
 };
 

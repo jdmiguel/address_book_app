@@ -70,7 +70,7 @@ input{
   border-radius: 4px;
   width: 400px;
   max-width: 100%;
-  color: $primaryDark;
+  @include font(0.9rem, 300, $primaryDark);
   &.disabled{
     background-color: $darkWhite;
     opacity: 0.9;
@@ -78,6 +78,5 @@ input{
 }
 
 ::placeholder {
-  color: $grey;
-  font-weight: 300;
+  @include font(0.9rem, 300, $grey);
 }

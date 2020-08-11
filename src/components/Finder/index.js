@@ -23,7 +23,7 @@ Finder.propTypes = {
 };
 
 Finder.defaultProps = {
-  disabled: true,
+  disabled: false,
 };
 
 export default Finder;

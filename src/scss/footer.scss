@@ -29,6 +29,16 @@ footer{
       width: 20px;
     }
   }
+  &.withWarning{
+    > div {
+      &:first-of-type{
+        background-color: $grey;
+        padding: 10px 0;
+        height: auto;
+        @include font(0.95rem, 500, $white);
+      }
+    }
+  }
   @media only screen and (min-width: 768px) {
     > div {
       &:first-of-type{

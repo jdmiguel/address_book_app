@@ -12,9 +12,8 @@ exports[`Component: Header should render with Finder 1`] = `
     </h1>
     <input
       autocomplete="nope"
-      class="disabled"
-      disabled=""
-      placeholder="Finder is disabled while users are loading..."
+      class=""
+      placeholder="Start typing to filter by user..."
     />
   </div>
   <div />
