@@ -10,7 +10,7 @@ import { literals } from '../../../utils/constants';
 
 const SettingsPage = ({ nationalities }) => {
   return (
-    <Layout withSettings>
+    <Layout>
       <div className="container">
         <div className="row">
           <PageTitle text={literals.settingsPageTitle} />

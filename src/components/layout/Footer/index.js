@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { literals, settingsIcon, homeIcon } from '../../../utils/constants';
@@ -15,10 +16,10 @@ const Footer = ({ withWarning, withSettings }) => (
   <footer className={withWarning ? 'withWarning' : ''}>
     <div>{withWarning && warning}</div>
     <div className="container">
-      <a href={withSettings ? settingsLink : homeLink}>
+      <Link to={withSettings ? settingsLink : homeLink}>
         <img src={withSettings ? settingsIcon : homeIcon} alt="icon" />
         {withSettings ? settingsText : homeText}
-      </a>
+      </Link>
       {text}
     </div>
   </footer>
