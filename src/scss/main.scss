@@ -20,11 +20,15 @@ h1{
 }
 
 h2{
-  @include font(1.5rem, 500, $primaryDark);
-  margin-bottom: 10px;
+  @include font(1.6rem, 500, $primaryDark);
+  text-align: center;
+  line-height: 1.7rem;
+  width: 80%;
+  margin: 0 auto 30px;
   @media only screen and (min-width: 768px) {
     font-size: 1.8rem;
-    margin-bottom: 0;
+    width: 100%;
+    margin: 10px auto 40px;
   }
   @media only screen and (min-width: 1200px) {
     font-size: 2rem;

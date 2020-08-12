@@ -26,7 +26,7 @@ export const unitedKingdomFlag = String(unitedKingdomFlagSrc);
 
 // literals
 export const literals = {
-  title: 'ADDRESS BOOK',
+  logo: 'ADDRESS BOOK',
   footer: {
     text: 'This is a coding exercise for Sherpany company',
     link: {
@@ -37,8 +37,7 @@ export const literals = {
     },
     warning: 'While finder is active, users will not be loaded',
   },
-  homePageTitle: 'Contact list',
-  settingsPageTitle: 'Choose any nationality',
+  settingsPageTitle: 'Set one of these nationalities as default',
   finder: {
     enabledText: 'Start typing to filter by user...',
     disabledText: 'Finder is disabled while users are loading',

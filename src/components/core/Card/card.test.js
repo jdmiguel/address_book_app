@@ -8,7 +8,7 @@ import {
   userCardData,
   nationalityCardText,
   spainFlag,
-} from '../../utils/constants';
+} from '../../../utils/constants';
 
 describe('Component: Card', () => {
   it('should render user card and call onClick function', () => {
