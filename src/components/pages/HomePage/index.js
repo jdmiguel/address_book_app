@@ -8,8 +8,7 @@ import useScrollPosY from '../../hooks/useScrollPosY';
 
 import {
   literals,
-  userImgSrc,
-  userModalData,
+  defaultModalData,
   modalIcons,
   scrollFactor,
   maxPages,
@@ -26,9 +25,10 @@ const Loader = ({ active }) => (
 
 const HomePage = () => {
   const [currentUsers, setCurrentUsers] = useState([]);
+  const [modalData, setModalData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showWarning, setShowWarning] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const usersContainer = useRef();
   const pageCounter = useRef(1);
@@ -40,7 +40,8 @@ const HomePage = () => {
         const { picture, name, login, email, location, phone, cell } = user;
 
         return {
-          img: picture.medium,
+          imgSrc: picture.large,
+          thumbSrc: picture.medium,
           name: `${name.first} ${name.last}`,
           id: login.uuid,
           username: login.username,
@@ -86,15 +87,39 @@ const HomePage = () => {
     }
   }, [currentUsers, handleGetUsers]);
 
+  useEffect(() => {
+    if (modalData) {
+      setModalIsOpen(true);
+    }
+  }, [modalData]);
+
   const closeModal = () => {
-    setIsOpen(false);
+    setModalIsOpen(false);
+  };
+
+  const handleUserCardClick = (id) => {
+    const user = currentUsers.find((currentUser) => currentUser.id === id);
+    const currentModalData = {
+      imgSrc: user.imgSrc,
+      firstText: user.name,
+      secondText: user.username,
+      thirdText: user.email,
+      fourthText: user.streetName,
+      fifthText: String(user.streetNumber),
+      sixthText: user.city,
+      seventhText: user.state,
+      eighthText: String(user.postcode),
+      ninethText: user.phone,
+      tenthText: user.cell,
+    };
+
+    setModalData(currentModalData);
   };
 
   return (
     <Layout withFinder withSettings withWarning={showWarning}>
       <Modal
-        userImgSrc={userImgSrc}
-        data={userModalData}
+        data={modalData || defaultModalData}
         icons={modalIcons}
         isOpen={modalIsOpen}
         closeModal={closeModal}
@@ -107,15 +132,13 @@ const HomePage = () => {
               <Card
                 key={currentUser.id}
                 id={currentUser.id}
-                imgSrc={currentUser.img}
+                imgSrc={currentUser.thumbSrc}
                 data={{
                   cardFirstLine: currentUser.name,
                   cardSecondLine: currentUser.username,
                   cardThirdLine: currentUser.email,
                 }}
-                onClick={(id) => {
-                  console.log(id);
-                }}
+                onClick={(id) => handleUserCardClick(id)}
               />
             ))}
         </div>

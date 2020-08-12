@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
 const CustomModal = ({
-  userImgSrc,
   data: {
+    imgSrc,
     firstText,
     secondText,
     thirdText,
@@ -35,7 +35,13 @@ const CustomModal = ({
     </div>
     <div className="modal-content">
       <div>
-        <img className="shadow-img" src={userImgSrc} alt="detail img" />
+        <img
+          width="90px"
+          height="90px"
+          className="shadow-img"
+          src={imgSrc}
+          alt="detail img"
+        />
         <div>
           <h3>{firstText}</h3>
           <p>{secondText}</p>
@@ -61,8 +67,8 @@ const CustomModal = ({
 );
 
 CustomModal.propTypes = {
-  userImgSrc: PropTypes.string.isRequired,
   data: PropTypes.shape({
+    imgSrc: PropTypes.string,
     firstText: PropTypes.string,
     secondText: PropTypes.string,
     thirdText: PropTypes.string,

@@ -4,9 +4,9 @@ import { render, fireEvent } from '@testing-library/react';
 import Card from '.';
 
 import {
-  userImgSrc,
-  userCardData,
-  nationalityCardText,
+  defaultImgSrc,
+  defaultCardData,
+  defaultNationalityText,
   spainFlag,
 } from '../../../utils/constants';
 
@@ -15,9 +15,9 @@ describe('Component: Card', () => {
     const handleClick = jest.fn();
     const { container } = render(
       <Card
-        id={userCardData.cardFirstLine}
-        imgSrc={userImgSrc}
-        data={userCardData}
+        id={defaultCardData.cardFirstLine}
+        imgSrc={defaultImgSrc}
+        data={defaultCardData}
         onClick={handleClick}
       />,
     );
@@ -30,15 +30,15 @@ describe('Component: Card', () => {
     // mock function should be called
     expect(handleClick).toHaveBeenCalled();
     // mock function parameter expect to be equal to card id
-    expect(handleClick.mock.calls[0][0]).toBe(userCardData.cardFirstLine);
+    expect(handleClick.mock.calls[0][0]).toBe(defaultCardData.cardFirstLine);
   });
 
   it('should render nationality card', () => {
     const { container } = render(
       <Card
-        id={nationalityCardText}
+        id={defaultNationalityText}
         imgSrc={spainFlag}
-        data={nationalityCardText}
+        data={defaultNationalityText}
         onClick={() => {}}
         isHighlight
       />,

@@ -23,7 +23,9 @@ exports[`Component: Modal should render and call onClose function 1`] = `
       <img
         alt="detail img"
         class="shadow-img"
+        height="90px"
         src="https://randomuser.me/api/portraits/women/52.jpg"
+        width="90px"
       />
       <div>
         <h3>
