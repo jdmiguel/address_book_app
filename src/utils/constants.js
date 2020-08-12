@@ -37,11 +37,20 @@ export const literals = {
     },
     warning: 'While finder is active, users will not be loaded',
   },
+  loadingText: 'Loading...',
   settingsPageTitle: 'Set one of these nationalities as default',
   finder: {
     enabledText: 'Start typing to filter by user...',
     disabledText: 'Finder is disabled while users are loading',
   },
+};
+
+// nationalities values
+export const nationalityValue = {
+  ch: 'ch',
+  es: 'es',
+  fr: 'fr',
+  gb: 'gb',
 };
 
 // mocks
