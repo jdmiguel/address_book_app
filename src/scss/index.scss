@@ -1,4 +1,5 @@
 @import "./utils/vars";
+@import "./utils/classes";
 @import "./utils/mixins";
 @import "./utils/reset";
 @import "./utils/bootstrap/bootstrap-grid";
@@ -6,5 +7,5 @@
 @import "./core/card";
 @import "./layout/header";
 @import "./layout/footer";
+@import "./layout";
 @import "./pages/home";
-@import "./main";

@@ -24,6 +24,7 @@ const HomePage = () => {
   const [currentUsers, setCurrentUsers] = useState([]);
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [showWarning, setShowWarning] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const HomePage = () => {
   };
 
   return (
-    <Layout withFinder withSettings withWarning>
+    <Layout withFinder withSettings withWarning={showWarning}>
       <Modal
         userImgSrc={userImgSrc}
         data={userModalData}

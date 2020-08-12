@@ -4,12 +4,10 @@
   height: 30px;
   z-index: 12;
   opacity: 0;
-  visibility: hidden;
   margin: 10px 0;
   @include transition(opacity, 0.25s);
   &.active{
     opacity: 1;
-    visibility: visible;
   }
   > div{
     &:first-of-type{
