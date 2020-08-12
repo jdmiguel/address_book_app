@@ -1,0 +1,43 @@
+.layout{
+  @include flexContainer($mainAxisAlign: flex-start,$crossAxisAlign: flex-start, $direction: column);
+  min-height: 100vh;
+  position: relative;
+}
+
+main{
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto 100px;
+  padding-top: 90px;
+  @media only screen and (min-width: 768px) {
+    padding-top: 80px;
+  }
+}
+
+h2{
+  @include font(1.6rem, 500, $primaryDark);
+  text-align: center;
+  line-height: 1.7rem;
+  width: 80%;
+  margin: 30px auto;
+  @media only screen and (min-width: 768px) {
+    font-size: 1.8rem;
+    width: 100%;
+    margin: 40px auto;
+  }
+  @media only screen and (min-width: 1200px) {
+    font-size: 2rem;
+  }
+}
+
+h3{
+  @include font(1.3rem, 500, $primaryLight);
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+}
+
+h4{
+  @include font(1rem, 500, $primaryLight);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}

@@ -14,7 +14,6 @@ const Header = ({ withFinder }) => (
       </Link>
       {withFinder && <Finder onChange={(value) => console.log(value)} />}
     </div>
-    <div />
   </header>
 );
 

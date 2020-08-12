@@ -1,0 +1,46 @@
+.loader{
+  position: fixed;
+  left: 0;
+  top: 130px;
+  z-index: 1;
+  @include flexContainer();
+  width: 100%;
+  height: 30px;
+  opacity: 0;
+  padding: 25px 0;
+  background-color: $white;
+  @include transition(opacity, 0.25s);
+  &.active{
+    opacity: 1;
+  }
+  > div{
+    &:first-of-type{
+      border: 2px solid $primary;
+      border-top: 2px solid $white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: loader-animation 0.8s linear infinite;
+      margin-right: 10px;
+    }
+    &:last-of-type{
+      @include font(1rem, 500, $primary);
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    top: 120px;
+  }
+}
+
+@keyframes loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.users-container{
+  margin-top: 50px;
+}

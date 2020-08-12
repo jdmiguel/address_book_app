@@ -25,6 +25,18 @@ body {
   background: $white;
 }
 
+body {
+  font-display: auto;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: $black;
+} 
+
+button {
+  cursor: pointer;
+}
+
 li {
   list-style: none;
 }
