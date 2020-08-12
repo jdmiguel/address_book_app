@@ -59,17 +59,16 @@ export const nationalityValue = {
 export const scrollFactor = 1.6;
 export const maxPages = 20;
 
-// mocks
-export const userThumbSrc =
-  'https://randomuser.me/api/portraits/med/women/52.jpg';
-export const userImgSrc = 'https://randomuser.me/api/portraits/women/52.jpg';
-export const userCardData = {
+// defaults
+export const defaultImgSrc = 'https://randomuser.me/api/portraits/women/52.jpg';
+export const defaultCardData = {
   cardFirstLine: 'Alba Caballero',
   cardSecondLine: 'purpleelephant787',
   cardThirdLine: 'alba.caballero@example.com',
 };
-export const nationalityCardText = 'Spanish';
-export const userModalData = {
+export const defaultNationalityText = 'Spanish';
+export const defaultModalData = {
+  imgSrc: defaultImgSrc,
   firstText: 'Alba Caballero',
   secondText: 'purpleelephant787',
   thirdText: 'alba.caballero@example.com',
