@@ -5,7 +5,7 @@
   z-index: 12;
   opacity: 0;
   visibility: hidden;
-  margin-bottom: 20px;
+  margin: 10px 0;
   @include transition(opacity, 0.25s);
   &.active{
     opacity: 1;
@@ -28,6 +28,7 @@
   }
   @media only screen and (min-width: 768px) {
     top: 120px;
+    margin: 15px 0;
   }
 }
 

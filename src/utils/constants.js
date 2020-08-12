@@ -3,6 +3,7 @@ import homeIconSrc from '../assets/img/home.svg';
 import placeIconSrc from '../assets/img/place.svg';
 import exploreIconSrc from '../assets/img/explore.svg';
 import phoneIconSrc from '../assets/img/phone.svg';
+import warningIconSrc from '../assets/img/warning.svg';
 
 import spainFlagSrc from '../assets/img/spain-flag.png';
 import franceFlagSrc from '../assets/img/france-flag.png';
@@ -17,6 +18,7 @@ export const modalIcons = {
   secondIcon: String(exploreIconSrc),
   thirdIcon: String(phoneIconSrc),
 };
+export const warningIcon = String(warningIconSrc);
 
 // imgPaths
 export const spainFlag = String(spainFlagSrc);

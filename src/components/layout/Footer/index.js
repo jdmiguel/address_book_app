@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { literals, settingsIcon, homeIcon } from '../../../utils/constants';
+import {
+  literals,
+  settingsIcon,
+  homeIcon,
+  warningIcon,
+} from '../../../utils/constants';
 
 const {
   footer: {
@@ -13,8 +18,13 @@ const {
 } = literals;
 
 const Footer = ({ withWarning, withSettings }) => (
-  <footer className={withWarning ? 'withWarning' : ''}>
-    <div>{withWarning && warning}</div>
+  <footer>
+    {withWarning && (
+      <div className="warning">
+        <img src={warningIcon} alt="icon" />
+        {warning}
+      </div>
+    )}
     <div className="container">
       <Link to={withSettings ? settingsLink : homeLink}>
         <img src={withSettings ? settingsIcon : homeIcon} alt="icon" />

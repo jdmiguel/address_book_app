@@ -66,7 +66,7 @@ const HomePage = () => {
   };
 
   return (
-    <Layout withFinder withSettings>
+    <Layout withFinder withSettings withWarning>
       <Modal
         userImgSrc={userImgSrc}
         data={userModalData}
