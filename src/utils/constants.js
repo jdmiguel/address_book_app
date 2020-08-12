@@ -38,7 +38,7 @@ export const literals = {
     warning: 'While finder is active, users will not be loaded',
   },
   homePageTitle: 'Contact list',
-  settingsPageTitle: 'Choose any nationality',
+  settingsPageTitle: 'Set one of these nationalities as default',
   finder: {
     enabledText: 'Start typing to filter by user...',
     disabledText: 'Finder is disabled while users are loading',
