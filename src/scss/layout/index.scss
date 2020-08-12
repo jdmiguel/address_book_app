@@ -38,9 +38,6 @@ h3{
 
 h4{
   @include font(1rem, 500, $primaryLight);
-  letter-spacing: 0.05rem;
   text-transform: uppercase;
-  @media only screen and (min-width: 350px) {
-    font-size: 1.1rem;
-  }
+  margin-bottom: 2px;
 }

@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 import Layout from '../../layout';
 import Card from '../../core/Card';
 import Modal from '../../core/Modal';
+
+import useScrollPosY from '../../hooks/useScrollPosY';
 
 import {
   literals,
   userImgSrc,
   userModalData,
   modalIcons,
+  scrollFactor,
+  maxPages,
 } from '../../../utils/constants';
 
 import getUsers from '../../../services/api';
@@ -22,24 +26,17 @@ const Loader = ({ active }) => (
 
 const HomePage = () => {
   const [currentUsers, setCurrentUsers] = useState([]);
-  const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showWarning, setShowWarning] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (currentUsers.length > 0) {
-      setIsLoading(false);
-    }
-  }, [currentUsers]);
+  const usersContainer = useRef();
+  const pageCounter = useRef(1);
 
-  useEffect(() => {
-    getUsers().then((users) => {
-      const {
-        info: { page },
-        results,
-      } = users;
-      const formattedUsers = results.map((user) => {
+  const handleGetUsers = useCallback(() => {
+    setIsLoading(true);
+    getUsers(pageCounter.current).then((users) => {
+      const formattedUsers = users.results.map((user) => {
         const { picture, name, login, email, location, phone, cell } = user;
 
         return {
@@ -57,10 +54,37 @@ const HomePage = () => {
           cell,
         };
       });
-      setCurrentUsers(formattedUsers);
-      setPage(page);
+      setCurrentUsers(
+        pageCounter.current === 1
+          ? formattedUsers
+          : [...currentUsers, ...formattedUsers],
+      );
     });
-  }, []);
+  }, [currentUsers]);
+
+  useScrollPosY(
+    ({ posY }) => {
+      const { current: counter } = pageCounter;
+      const allowedPages = counter < maxPages;
+      const scrollDownLimit =
+        posY > usersContainer.current.clientHeight / scrollFactor &&
+        allowedPages;
+
+      if (scrollDownLimit && allowedPages && !isLoading) {
+        handleGetUsers(pageCounter.current);
+      }
+    },
+    [isLoading],
+  );
+
+  useEffect(() => {
+    if (currentUsers.length > 0) {
+      pageCounter.current += 1;
+      setIsLoading(false);
+    } else {
+      handleGetUsers();
+    }
+  }, [currentUsers, handleGetUsers]);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -76,10 +100,8 @@ const HomePage = () => {
         closeModal={closeModal}
       />
       <div className="container">
-        <div className="row">
-          <Loader active={isLoading} />
-        </div>
-        <div className="row">
+        <Loader active={isLoading} />
+        <div ref={usersContainer} className="row users-container">
           {currentUsers.length > 0 &&
             currentUsers.map((currentUser) => (
               <Card

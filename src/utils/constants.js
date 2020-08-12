@@ -55,6 +55,10 @@ export const nationalityValue = {
   gb: 'gb',
 };
 
+// scroll utils
+export const scrollFactor = 1.6;
+export const maxPages = 20;
+
 // mocks
 export const userThumbSrc =
   'https://randomuser.me/api/portraits/med/women/52.jpg';
