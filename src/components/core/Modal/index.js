@@ -38,13 +38,7 @@ const CustomModal = ({
     </div>
     <div className="modal-content">
       <div>
-        <img
-          width="90px"
-          height="90px"
-          className="shadow-img"
-          src={imgSrc}
-          alt={literals.userAltImg}
-        />
+        <img className="shadow-img" src={imgSrc} alt={literals.userAltImg} />
         <div>
           <h3>{firstText}</h3>
           <p>{secondText}</p>

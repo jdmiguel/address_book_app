@@ -71,7 +71,6 @@ const HomePage = ({ currentNationalityId }) => {
 
           return {
             imgSrc: picture.large,
-            thumbSrc: picture.medium,
             name: `${name.first} ${name.last}`,
             id: login.uuid,
             username: login.username,
@@ -199,7 +198,7 @@ const HomePage = ({ currentNationalityId }) => {
                 <Card
                   key={currentUsers.id}
                   id={currentUsers.id}
-                  imgSrc={currentUsers.thumbSrc}
+                  imgSrc={currentUsers.imgSrc}
                   data={{
                     cardFirstLine: currentUsers.name,
                     cardSecondLine: currentUsers.username,
