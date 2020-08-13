@@ -4,6 +4,8 @@ import placeIconSrc from '../assets/img/place.svg';
 import exploreIconSrc from '../assets/img/explore.svg';
 import phoneIconSrc from '../assets/img/phone.svg';
 import warningIconSrc from '../assets/img/warning.svg';
+import searchingIconSrc from '../assets/img/searching.svg';
+import checkIconSrc from '../assets/img/check.svg';
 
 import spainFlagSrc from '../assets/img/spain-flag.png';
 import franceFlagSrc from '../assets/img/france-flag.png';
@@ -19,6 +21,8 @@ export const modalIcons = {
   thirdIcon: String(phoneIconSrc),
 };
 export const warningIcon = String(warningIconSrc);
+export const searchingIcon = String(searchingIconSrc);
+export const checkIcon = String(checkIconSrc);
 
 // imgPaths
 export const spainFlag = String(spainFlagSrc);
@@ -37,14 +41,12 @@ export const literals = {
       homeText: 'Back to Home',
       homeLink: '/',
     },
-    warning: 'While finder is active, users will not be loaded',
+    warning:
+      'While finder is active, more users will not be loaded by scrolling',
   },
   loadingText: 'Loading...',
   settingsPageTitle: 'Set one of these nationalities as default',
-  finder: {
-    enabledText: 'Start typing to filter by user...',
-    disabledText: 'Finder is disabled while users are loading',
-  },
+  finderPlaceholder: 'Start typing to filter by user...',
 };
 
 // nationalities values

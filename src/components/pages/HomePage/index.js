@@ -45,9 +45,10 @@ const HomePage = () => {
 
   const [modalData, setModalData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [showWarning, setShowWarning] = useState(false);
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [isMatched, setIsMatched] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentSearch, setCurrentSearch] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();
   const pageCounter = useRef(1);
@@ -90,21 +91,23 @@ const HomePage = () => {
         posY > usersContainer.current.clientHeight / scrollFactor &&
         allowedPages;
 
-      if (scrollDownLimit && allowedPages && !isLoading) {
+      if (scrollDownLimit && allowedPages && !isLoading && !isFiltering) {
         handleGetUsers(pageCounter.current);
       }
     },
-    [isLoading],
+    [isLoading, isFiltering],
   );
 
   useEffect(() => {
-    if (users.length > 0) {
-      pageCounter.current += 1;
-      setIsLoading(false);
-    } else {
-      handleGetUsers();
+    if (!isFiltering) {
+      if (users.length > 0) {
+        pageCounter.current += 1;
+        setIsLoading(false);
+      } else {
+        handleGetUsers();
+      }
     }
-  }, [users]);
+  }, [users, isFiltering]);
 
   useEffect(() => {
     if (modalData) {
@@ -138,8 +141,31 @@ const HomePage = () => {
     [users],
   );
 
+  const handleSearch = useCallback(
+    (search) => {
+      setIsFiltering(!!search);
+
+      const filteredUsers = users.filter(
+        (user) => user.name.toLowerCase() === search.toLowerCase(),
+      );
+
+      setIsMatched(filteredUsers.length > 0);
+      setFilteredUsers(filteredUsers);
+    },
+    [users],
+  );
+
+  const currentUsers = filteredUsers.length > 0 ? filteredUsers : users;
+
   return (
-    <Layout withFinder withSettings withWarning={showWarning}>
+    <Layout
+      withFinder
+      withSettings
+      isSearching={isFiltering && !isMatched}
+      isMatched={isFiltering && isMatched}
+      withWarning={isFiltering}
+      onChangeFinder={handleSearch}
+    >
       <Modal
         data={modalData || defaultModalData}
         icons={modalIcons}
@@ -149,16 +175,16 @@ const HomePage = () => {
       <div className="container">
         <Loader active={isLoading} />
         <div ref={usersContainer} className="row users-container">
-          {users.length > 0 &&
-            users.map((user) => (
+          {currentUsers.length > 0 &&
+            currentUsers.map((currentUsers) => (
               <Card
-                key={user.id}
-                id={user.id}
-                imgSrc={user.thumbSrc}
+                key={currentUsers.id}
+                id={currentUsers.id}
+                imgSrc={currentUsers.thumbSrc}
                 data={{
-                  cardFirstLine: user.name,
-                  cardSecondLine: user.username,
-                  cardThirdLine: user.email,
+                  cardFirstLine: currentUsers.name,
+                  cardSecondLine: currentUsers.username,
+                  cardThirdLine: currentUsers.email,
                 }}
                 onClick={(id) => handleUserCardClick(id)}
               />

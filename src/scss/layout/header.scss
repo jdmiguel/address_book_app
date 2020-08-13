@@ -49,20 +49,3 @@ h1{
     font-size: 2.4rem;
   }
 }
-
-input{
-  padding: 15px 10px;
-  background-color: $white;
-  border-radius: 4px;
-  width: 400px;
-  max-width: 100%;
-  @include font(0.9rem, 300, $primaryDark);
-  &.disabled{
-    background-color: $darkWhite;
-    opacity: 0.9;
-  }
-}
-
-::placeholder {
-  @include font(0.9rem, 300, $grey);
-}

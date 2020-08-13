@@ -1,29 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { literals } from '../../../utils/constants';
+import { literals, searchingIcon, checkIcon } from '../../../utils/constants';
 
-const {
-  finder: { enabledText, disabledText },
-} = literals;
-
-const Finder = ({ onChange, disabled }) => (
-  <input
-    className={disabled ? 'disabled' : ''}
-    placeholder={disabled ? disabledText : enabledText}
-    onChange={(event) => onChange(event.target.value)}
-    disabled={disabled}
-    autoComplete="nope"
-  />
+const Finder = ({ onChange, isSearching, isMatched }) => (
+  <div className="finder">
+    <input
+      placeholder={literals.finderPlaceholder}
+      onChange={(event) => onChange(event.target.value)}
+      autoComplete="nope"
+    />
+    {isSearching && <img src={searchingIcon} alt="icon" />}
+    {isMatched && <img src={checkIcon} alt="icon" />}
+  </div>
 );
 
 Finder.propTypes = {
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
+  isSearching: PropTypes.bool,
+  isMatched: PropTypes.bool,
 };
 
 Finder.defaultProps = {
-  disabled: false,
+  isSearching: false,
+  isMatched: false,
 };
 
 export default Finder;
