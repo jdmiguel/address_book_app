@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Layout from '../../layout';
 import PageTitle from '../../core/PageTitle';
@@ -15,10 +15,11 @@ import {
 
 const SettingsPage = ({
   nationalities,
+  currentNationalityId,
   handleActiveNationality,
   handleDeactiveAllNationalities,
 }) => {
-  const [currentId, setCurrentId] = useState('');
+  const [currentId, setCurrentId] = useState(currentNationalityId);
 
   const handleNationalityCardClick = useCallback(
     (id) => {
@@ -67,8 +68,9 @@ SettingsPage.propTypes = {
   ),
 };
 
-const mapStateToProps = ({ nationalities }) => ({
+const mapStateToProps = ({ nationalities, currentNationalityId }) => ({
   nationalities,
+  currentNationalityId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

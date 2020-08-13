@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
+import { connect } from 'react-redux';
 
 import Layout from '../../layout';
 import Card from '../../core/Card';
@@ -40,7 +41,7 @@ const usersReducer = (users, action) => {
   }
 };
 
-const HomePage = () => {
+const HomePage = ({ currentNationalityId }) => {
   const [users, usersDispatch] = useReducer(usersReducer, []);
 
   const [modalData, setModalData] = useState(null);
@@ -55,7 +56,7 @@ const HomePage = () => {
 
   const handleGetUsers = () => {
     setIsLoading(true);
-    getUsers(pageCounter.current).then((users) => {
+    getUsers(pageCounter.current, currentNationalityId).then((users) => {
       const formattedUsers = users.results.map((user) => {
         const { picture, name, login, email, location, phone, cell } = user;
 
@@ -194,4 +195,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const mapStateToProps = ({ currentNationalityId }) => ({
+  currentNationalityId,
+});
+
+export default connect(mapStateToProps)(HomePage);
