@@ -1,10 +1,14 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, {
+  useReducer,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 
 import Layout from '../../layout';
 import Card from '../../core/Card';
 import Modal from '../../core/Modal';
-
-import useScrollPosY from '../../hooks/useScrollPosY';
 
 import {
   literals,
@@ -13,6 +17,8 @@ import {
   scrollFactor,
   maxPages,
 } from '../../../utils/constants';
+
+import useScrollPosY from '../../hooks/useScrollPosY';
 
 import getUsers from '../../../services/api';
 
@@ -23,17 +29,30 @@ const Loader = ({ active }) => (
   </div>
 );
 
+const usersReducer = (users, action) => {
+  switch (action.type) {
+    case 'set':
+      return action.users;
+    case 'add':
+      return [...users, ...action.users];
+    default:
+      return users;
+  }
+};
+
 const HomePage = () => {
-  const [currentUsers, setCurrentUsers] = useState([]);
+  const [users, usersDispatch] = useReducer(usersReducer, []);
+
   const [modalData, setModalData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showWarning, setShowWarning] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState('');
 
   const usersContainer = useRef();
   const pageCounter = useRef(1);
 
-  const handleGetUsers = useCallback(() => {
+  const handleGetUsers = () => {
     setIsLoading(true);
     getUsers(pageCounter.current).then((users) => {
       const formattedUsers = users.results.map((user) => {
@@ -55,13 +74,13 @@ const HomePage = () => {
           cell,
         };
       });
-      setCurrentUsers(
-        pageCounter.current === 1
-          ? formattedUsers
-          : [...currentUsers, ...formattedUsers],
-      );
+
+      usersDispatch({
+        type: pageCounter.current === 1 ? 'set' : 'add',
+        users: formattedUsers,
+      });
     });
-  }, [currentUsers]);
+  };
 
   useScrollPosY(
     ({ posY }) => {
@@ -79,13 +98,13 @@ const HomePage = () => {
   );
 
   useEffect(() => {
-    if (currentUsers.length > 0) {
+    if (users.length > 0) {
       pageCounter.current += 1;
       setIsLoading(false);
     } else {
       handleGetUsers();
     }
-  }, [currentUsers, handleGetUsers]);
+  }, [users]);
 
   useEffect(() => {
     if (modalData) {
@@ -97,24 +116,27 @@ const HomePage = () => {
     setModalIsOpen(false);
   };
 
-  const handleUserCardClick = (id) => {
-    const user = currentUsers.find((currentUser) => currentUser.id === id);
-    const currentModalData = {
-      imgSrc: user.imgSrc,
-      firstText: user.name,
-      secondText: user.username,
-      thirdText: user.email,
-      fourthText: user.streetName,
-      fifthText: String(user.streetNumber),
-      sixthText: user.city,
-      seventhText: user.state,
-      eighthText: String(user.postcode),
-      ninethText: user.phone,
-      tenthText: user.cell,
-    };
+  const handleUserCardClick = useCallback(
+    (id) => {
+      const user = users.find((user) => user.id === id);
+      const currentModalData = {
+        imgSrc: user.imgSrc,
+        firstText: user.name,
+        secondText: user.username,
+        thirdText: user.email,
+        fourthText: user.streetName,
+        fifthText: String(user.streetNumber),
+        sixthText: user.city,
+        seventhText: user.state,
+        eighthText: String(user.postcode),
+        ninethText: user.phone,
+        tenthText: user.cell,
+      };
 
-    setModalData(currentModalData);
-  };
+      setModalData(currentModalData);
+    },
+    [users],
+  );
 
   return (
     <Layout withFinder withSettings withWarning={showWarning}>
@@ -127,16 +149,16 @@ const HomePage = () => {
       <div className="container">
         <Loader active={isLoading} />
         <div ref={usersContainer} className="row users-container">
-          {currentUsers.length > 0 &&
-            currentUsers.map((currentUser) => (
+          {users.length > 0 &&
+            users.map((user) => (
               <Card
-                key={currentUser.id}
-                id={currentUser.id}
-                imgSrc={currentUser.thumbSrc}
+                key={user.id}
+                id={user.id}
+                imgSrc={user.thumbSrc}
                 data={{
-                  cardFirstLine: currentUser.name,
-                  cardSecondLine: currentUser.username,
-                  cardThirdLine: currentUser.email,
+                  cardFirstLine: user.name,
+                  cardSecondLine: user.username,
+                  cardThirdLine: user.email,
                 }}
                 onClick={(id) => handleUserCardClick(id)}
               />
