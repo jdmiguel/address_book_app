@@ -23,6 +23,8 @@ import useScrollPosY from '../../hooks/useScrollPosY';
 
 import getUsers from '../../../services/api';
 
+const ErrorMsg = () => <div className="error">{literals.errorText}</div>;
+
 const Loader = ({ active }) => (
   <div className={`loader${active ? ' active' : ''}`}>
     <div />
@@ -49,6 +51,7 @@ const HomePage = ({ currentNationalityId }) => {
   const [isFiltering, setIsFiltering] = useState(false);
   const [isMatched, setIsMatched] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [onError, setOnError] = useState(true);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();
@@ -84,7 +87,8 @@ const HomePage = ({ currentNationalityId }) => {
         });
       })
       .catch((error) => {
-        throw new Error(error);
+        console.log(`Request has failed because of ${error}`);
+        setOnError(true);
       });
   }, [currentNationalityId]);
 
@@ -178,22 +182,26 @@ const HomePage = ({ currentNationalityId }) => {
       />
       <div className="container">
         <Loader active={isLoading} />
-        <div ref={usersContainer} className="row users-container">
-          {currentUsers.length > 0 &&
-            currentUsers.map((currentUsers) => (
-              <Card
-                key={currentUsers.id}
-                id={currentUsers.id}
-                imgSrc={currentUsers.thumbSrc}
-                data={{
-                  cardFirstLine: currentUsers.name,
-                  cardSecondLine: currentUsers.username,
-                  cardThirdLine: currentUsers.email,
-                }}
-                onClick={(id) => handleUserCardClick(id)}
-              />
-            ))}
-        </div>
+        {onError ? (
+          <ErrorMsg />
+        ) : (
+          <div ref={usersContainer} className="row users-container">
+            {currentUsers.length > 0 &&
+              currentUsers.map((currentUsers) => (
+                <Card
+                  key={currentUsers.id}
+                  id={currentUsers.id}
+                  imgSrc={currentUsers.thumbSrc}
+                  data={{
+                    cardFirstLine: currentUsers.name,
+                    cardSecondLine: currentUsers.username,
+                    cardThirdLine: currentUsers.email,
+                  }}
+                  onClick={(id) => handleUserCardClick(id)}
+                />
+              ))}
+          </div>
+        )}
       </div>
     </Layout>
   );

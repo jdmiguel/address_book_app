@@ -44,3 +44,10 @@
 .users-container{
   margin-top: 50px;
 }
+
+.error{
+  margin-top: 150px;
+  @include flexContainer();
+  @include font(1.2rem, 500, $primary);
+  text-align: center;
+}

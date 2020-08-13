@@ -48,6 +48,8 @@ export const literals = {
   settingsPageTitle: 'Set one of these nationalities as default',
   finderPlaceholder: 'Start typing to filter by user...',
   userAltImg: 'user image',
+  errorText:
+    'Sorry but the last request has failed, try again by reloading the page ;)',
 };
 
 // nationalities values
@@ -58,7 +60,7 @@ export const nationalities = {
     text: 'Swiss',
   },
   spanish: {
-    id: 'sp',
+    id: 'es',
     src: String(spainFlagSrc),
     text: 'Spanish',
   },
