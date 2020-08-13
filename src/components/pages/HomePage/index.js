@@ -188,26 +188,28 @@ const HomePage = ({ currentNationalityId }) => {
         closeModal={closeModal}
       />
       <div className="container">
-        <Loader active={isLoading} translated={hasScroll} />
         {onError ? (
           <ErrorMsg />
         ) : (
-          <div ref={usersContainer} className="row users-container">
-            {currentUsers.length > 0 &&
-              currentUsers.map((currentUsers) => (
-                <Card
-                  key={currentUsers.id}
-                  id={currentUsers.id}
-                  imgSrc={currentUsers.imgSrc}
-                  data={{
-                    cardFirstLine: currentUsers.name,
-                    cardSecondLine: currentUsers.username,
-                    cardThirdLine: currentUsers.email,
-                  }}
-                  onClick={(id) => handleUserCardClick(id)}
-                />
-              ))}
-          </div>
+          <>
+            <Loader active={isLoading} translated={hasScroll} />
+            <div ref={usersContainer} className="row users-container">
+              {currentUsers.length > 0 &&
+                currentUsers.map((currentUsers) => (
+                  <Card
+                    key={currentUsers.id}
+                    id={currentUsers.id}
+                    imgSrc={currentUsers.imgSrc}
+                    data={{
+                      cardFirstLine: currentUsers.name,
+                      cardSecondLine: currentUsers.username,
+                      cardThirdLine: currentUsers.email,
+                    }}
+                    onClick={(id) => handleUserCardClick(id)}
+                  />
+                ))}
+            </div>
+          </>
         )}
       </div>
     </Layout>
