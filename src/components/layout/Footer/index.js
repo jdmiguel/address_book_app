@@ -21,13 +21,16 @@ const Footer = ({ withWarning, withSettings }) => (
   <footer>
     {withWarning && (
       <div className="warning">
-        <img src={warningIcon} alt="icon" />
+        <img src={warningIcon.src} alt={warningIcon.alt} />
         {warning}
       </div>
     )}
     <div className="container">
       <Link to={withSettings ? settingsLink : homeLink}>
-        <img src={withSettings ? settingsIcon : homeIcon} alt="icon" />
+        <img
+          src={withSettings ? settingsIcon.src : homeIcon.src}
+          alt={withSettings ? settingsIcon.alt : homeIcon.alt}
+        />
         {withSettings ? settingsText : homeText}
       </Link>
       {text}

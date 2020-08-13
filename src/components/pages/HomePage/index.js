@@ -1,10 +1,14 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, {
+  useReducer,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 
 import Layout from '../../layout';
 import Card from '../../core/Card';
 import Modal from '../../core/Modal';
-
-import useScrollPosY from '../../hooks/useScrollPosY';
 
 import {
   literals,
@@ -13,6 +17,8 @@ import {
   scrollFactor,
   maxPages,
 } from '../../../utils/constants';
+
+import useScrollPosY from '../../hooks/useScrollPosY';
 
 import getUsers from '../../../services/api';
 
@@ -23,17 +29,31 @@ const Loader = ({ active }) => (
   </div>
 );
 
+const usersReducer = (users, action) => {
+  switch (action.type) {
+    case 'set':
+      return action.users;
+    case 'add':
+      return [...users, ...action.users];
+    default:
+      return users;
+  }
+};
+
 const HomePage = () => {
-  const [currentUsers, setCurrentUsers] = useState([]);
+  const [users, usersDispatch] = useReducer(usersReducer, []);
+
   const [modalData, setModalData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [showWarning, setShowWarning] = useState(false);
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [isMatched, setIsMatched] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();
   const pageCounter = useRef(1);
 
-  const handleGetUsers = useCallback(() => {
+  const handleGetUsers = () => {
     setIsLoading(true);
     getUsers(pageCounter.current).then((users) => {
       const formattedUsers = users.results.map((user) => {
@@ -55,13 +75,13 @@ const HomePage = () => {
           cell,
         };
       });
-      setCurrentUsers(
-        pageCounter.current === 1
-          ? formattedUsers
-          : [...currentUsers, ...formattedUsers],
-      );
+
+      usersDispatch({
+        type: pageCounter.current === 1 ? 'set' : 'add',
+        users: formattedUsers,
+      });
     });
-  }, [currentUsers]);
+  };
 
   useScrollPosY(
     ({ posY }) => {
@@ -71,21 +91,23 @@ const HomePage = () => {
         posY > usersContainer.current.clientHeight / scrollFactor &&
         allowedPages;
 
-      if (scrollDownLimit && allowedPages && !isLoading) {
+      if (scrollDownLimit && allowedPages && !isLoading && !isFiltering) {
         handleGetUsers(pageCounter.current);
       }
     },
-    [isLoading],
+    [isLoading, isFiltering],
   );
 
   useEffect(() => {
-    if (currentUsers.length > 0) {
-      pageCounter.current += 1;
-      setIsLoading(false);
-    } else {
-      handleGetUsers();
+    if (!isFiltering) {
+      if (users.length > 0) {
+        pageCounter.current += 1;
+        setIsLoading(false);
+      } else {
+        handleGetUsers();
+      }
     }
-  }, [currentUsers, handleGetUsers]);
+  }, [users, isFiltering]);
 
   useEffect(() => {
     if (modalData) {
@@ -97,27 +119,52 @@ const HomePage = () => {
     setModalIsOpen(false);
   };
 
-  const handleUserCardClick = (id) => {
-    const user = currentUsers.find((currentUser) => currentUser.id === id);
-    const currentModalData = {
-      imgSrc: user.imgSrc,
-      firstText: user.name,
-      secondText: user.username,
-      thirdText: user.email,
-      fourthText: user.streetName,
-      fifthText: String(user.streetNumber),
-      sixthText: user.city,
-      seventhText: user.state,
-      eighthText: String(user.postcode),
-      ninethText: user.phone,
-      tenthText: user.cell,
-    };
+  const handleUserCardClick = useCallback(
+    (id) => {
+      const user = users.find((user) => user.id === id);
+      const currentModalData = {
+        imgSrc: user.imgSrc,
+        firstText: user.name,
+        secondText: user.username,
+        thirdText: user.email,
+        fourthText: user.streetName,
+        fifthText: String(user.streetNumber),
+        sixthText: user.city,
+        seventhText: user.state,
+        eighthText: String(user.postcode),
+        ninethText: user.phone,
+        tenthText: user.cell,
+      };
 
-    setModalData(currentModalData);
-  };
+      setModalData(currentModalData);
+    },
+    [users],
+  );
+
+  const handleSearch = useCallback(
+    (search) => {
+      const filteredUsers = users.filter(
+        (user) => user.name.toLowerCase() === search.toLowerCase(),
+      );
+
+      setIsFiltering(!!search);
+      setIsMatched(filteredUsers.length > 0);
+      setFilteredUsers(filteredUsers);
+    },
+    [users],
+  );
+
+  const currentUsers = filteredUsers.length > 0 ? filteredUsers : users;
 
   return (
-    <Layout withFinder withSettings withWarning={showWarning}>
+    <Layout
+      withFinder
+      withSettings
+      isSearching={isFiltering && !isMatched}
+      isMatched={isFiltering && isMatched}
+      withWarning={isFiltering}
+      onChangeFinder={handleSearch}
+    >
       <Modal
         data={modalData || defaultModalData}
         icons={modalIcons}
@@ -128,15 +175,15 @@ const HomePage = () => {
         <Loader active={isLoading} />
         <div ref={usersContainer} className="row users-container">
           {currentUsers.length > 0 &&
-            currentUsers.map((currentUser) => (
+            currentUsers.map((currentUsers) => (
               <Card
-                key={currentUser.id}
-                id={currentUser.id}
-                imgSrc={currentUser.thumbSrc}
+                key={currentUsers.id}
+                id={currentUsers.id}
+                imgSrc={currentUsers.thumbSrc}
                 data={{
-                  cardFirstLine: currentUser.name,
-                  cardSecondLine: currentUser.username,
-                  cardThirdLine: currentUser.email,
+                  cardFirstLine: currentUsers.name,
+                  cardSecondLine: currentUsers.username,
+                  cardThirdLine: currentUsers.email,
                 }}
                 onClick={(id) => handleUserCardClick(id)}
               />

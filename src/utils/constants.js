@@ -4,6 +4,8 @@ import placeIconSrc from '../assets/img/place.svg';
 import exploreIconSrc from '../assets/img/explore.svg';
 import phoneIconSrc from '../assets/img/phone.svg';
 import warningIconSrc from '../assets/img/warning.svg';
+import searchingIconSrc from '../assets/img/searching.svg';
+import checkIconSrc from '../assets/img/check.svg';
 
 import spainFlagSrc from '../assets/img/spain-flag.png';
 import franceFlagSrc from '../assets/img/france-flag.png';
@@ -11,14 +13,22 @@ import switzerlandFlagSrc from '../assets/img/switzerland-flag.png';
 import unitedKingdomFlagSrc from '../assets/img/united-kingdom-flag.png';
 
 // iconPaths
-export const settingsIcon = String(settingsIconSrc);
-export const homeIcon = String(homeIconSrc);
-export const modalIcons = {
-  firstIcon: String(placeIconSrc),
-  secondIcon: String(exploreIconSrc),
-  thirdIcon: String(phoneIconSrc),
+export const settingsIcon = {
+  src: String(settingsIconSrc),
+  alt: 'settings',
 };
-export const warningIcon = String(warningIconSrc);
+export const homeIcon = { src: String(homeIconSrc), alt: 'home' };
+export const modalIcons = {
+  firstIcon: { src: String(placeIconSrc), alt: 'address' },
+  secondIcon: { src: String(exploreIconSrc), alt: 'location' },
+  thirdIcon: { src: String(phoneIconSrc), alt: 'phone' },
+};
+export const warningIcon = { src: String(warningIconSrc), alt: 'warning' };
+export const searchingIcon = {
+  src: String(searchingIconSrc),
+  alt: 'address',
+};
+export const checkIcon = { src: String(checkIconSrc), alt: 'check' };
 
 // imgPaths
 export const spainFlag = String(spainFlagSrc);
@@ -37,14 +47,13 @@ export const literals = {
       homeText: 'Back to Home',
       homeLink: '/',
     },
-    warning: 'While finder is active, users will not be loaded',
+    warning:
+      'While finder is active, more users will not be loaded by scrolling',
   },
   loadingText: 'Loading...',
   settingsPageTitle: 'Set one of these nationalities as default',
-  finder: {
-    enabledText: 'Start typing to filter by user...',
-    disabledText: 'Finder is disabled while users are loading',
-  },
+  finderPlaceholder: 'Start typing to filter by user...',
+  userAltImg: 'user image',
 };
 
 // nationalities values

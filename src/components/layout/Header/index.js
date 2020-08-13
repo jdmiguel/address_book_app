@@ -6,23 +6,28 @@ import Finder from '../../core/Finder';
 
 import { literals } from '../../../utils/constants';
 
-const Header = ({ withFinder }) => (
+const Header = ({ withFinder, onChangeFinder, isSearching, isMatched }) => (
   <header className={!withFinder ? 'basic' : ''}>
     <div className="container">
       <Link to="/">
         <h1>{literals.logo}</h1>
       </Link>
-      {withFinder && <Finder onChange={(value) => console.log(value)} />}
+      {withFinder && (
+        <Finder
+          onChange={onChangeFinder}
+          isSearching={isSearching}
+          isMatched={isMatched}
+        />
+      )}
     </div>
   </header>
 );
 
 Header.propTypes = {
   withFinder: PropTypes.bool,
-};
-
-Header.defaultProps = {
-  withFinder: false,
+  onChangeFinder: PropTypes.func,
+  isSearching: PropTypes.bool,
+  isMatched: PropTypes.bool,
 };
 
 export default Header;

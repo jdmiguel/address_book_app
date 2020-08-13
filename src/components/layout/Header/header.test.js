@@ -15,7 +15,7 @@ describe('Component: Header', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should render with Finder', () => {
+  it('should render with Finder and call onChange function', () => {
     const { container } = render(
       <MemoryRouter>
         <Header withFinder />
