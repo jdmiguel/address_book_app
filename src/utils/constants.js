@@ -30,12 +30,6 @@ export const searchingIcon = {
 };
 export const checkIcon = { src: String(checkIconSrc), alt: 'check' };
 
-// imgPaths
-export const spainFlag = String(spainFlagSrc);
-export const franceFlag = String(franceFlagSrc);
-export const switzerlandFlag = String(switzerlandFlagSrc);
-export const unitedKingdomFlag = String(unitedKingdomFlagSrc);
-
 // literals
 export const literals = {
   logo: 'ADDRESS BOOK',
@@ -57,11 +51,27 @@ export const literals = {
 };
 
 // nationalities values
-export const nationalityValue = {
-  ch: 'ch',
-  es: 'es',
-  fr: 'fr',
-  gb: 'gb',
+export const nationalities = {
+  swiss: {
+    id: 'ch',
+    src: String(switzerlandFlagSrc),
+    text: 'Swiss',
+  },
+  spanish: {
+    id: 'sp',
+    src: String(spainFlagSrc),
+    text: 'Spanish',
+  },
+  french: {
+    id: 'fr',
+    src: String(franceFlagSrc),
+    text: 'French',
+  },
+  british: {
+    id: 'gb',
+    src: String(unitedKingdomFlagSrc),
+    text: 'British',
+  },
 };
 
 // scroll utils

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Layout from '../../layout';
 import PageTitle from '../../core/PageTitle';
@@ -8,7 +8,32 @@ import Card from '../../core/Card';
 
 import { literals } from '../../../utils/constants';
 
-const SettingsPage = ({ nationalities }) => {
+import {
+  activeNationality,
+  deactiveAllNationalities,
+} from '../../../store/actions';
+
+const SettingsPage = ({
+  nationalities,
+  currentNationalityId,
+  handleActiveNationality,
+  handleDeactiveAllNationalities,
+}) => {
+  const [currentId, setCurrentId] = useState(currentNationalityId);
+
+  const handleNationalityCardClick = useCallback(
+    (id) => {
+      if (currentId && id === currentId) {
+        handleDeactiveAllNationalities();
+        setCurrentId('');
+      } else {
+        handleActiveNationality(id);
+        setCurrentId(id);
+      }
+    },
+    [currentId, handleActiveNationality, handleDeactiveAllNationalities],
+  );
+
   return (
     <Layout>
       <div className="container">
@@ -18,13 +43,11 @@ const SettingsPage = ({ nationalities }) => {
         <div className="row">
           {nationalities.map((nationality) => (
             <Card
-              key={nationality.text}
-              id={nationality.text}
+              key={nationality.id}
+              id={nationality.id}
               imgSrc={nationality.img}
               data={nationality.text}
-              onClick={(id) => {
-                console.log(id);
-              }}
+              onClick={(id) => handleNationalityCardClick(id)}
               isHighlight
               isActive={nationality.active}
             />
@@ -45,6 +68,14 @@ SettingsPage.propTypes = {
   ),
 };
 
-const mapStateToProps = ({ nationalities }) => ({ nationalities });
+const mapStateToProps = ({ nationalities, currentNationalityId }) => ({
+  nationalities,
+  currentNationalityId,
+});
 
-export default connect(mapStateToProps)(SettingsPage);
+const mapDispatchToProps = (dispatch) => ({
+  handleActiveNationality: (id) => dispatch(activeNationality(id)),
+  handleDeactiveAllNationalities: () => dispatch(deactiveAllNationalities()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
