@@ -7,7 +7,7 @@ import {
   defaultImgSrc,
   defaultCardData,
   defaultNationalityText,
-  spainFlag,
+  nationalities,
 } from '../../../utils/constants';
 
 describe('Component: Card', () => {
@@ -37,7 +37,7 @@ describe('Component: Card', () => {
     const { container } = render(
       <Card
         id={defaultNationalityText}
-        imgSrc={spainFlag}
+        imgSrc={nationalities.spanish.src}
         data={defaultNationalityText}
         onClick={() => {}}
         isHighlight
