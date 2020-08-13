@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { literals } from '../../../utils/constants';
+
 const Card = ({ id, imgSrc, data, isHighlight, isActive, onClick }) => (
   <div className={`col-12 col-md-6 col-xl-${isHighlight ? '3' : '4'}`}>
     <div className={`card${isActive ? ' active' : ''}`}>
       <button type="button" onClick={() => onClick(id)}>
         <div className="card-image">
-          <img className="shadow-img" src={imgSrc} alt="card detail" />
+          <img className="shadow-img" src={imgSrc} alt={literals.userAltImg} />
         </div>
         <div className="card-text">
           {isHighlight ? (

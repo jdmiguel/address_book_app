@@ -14,7 +14,7 @@ exports[`Component: Card should render nationality card 1`] = `
         class="card-image"
       >
         <img
-          alt="card detail"
+          alt="user image"
           class="shadow-img"
           src="[object Object]"
         />
@@ -46,7 +46,7 @@ exports[`Component: Card should render user card and call onClick function 1`] =
         class="card-image"
       >
         <img
-          alt="card detail"
+          alt="user image"
           class="shadow-img"
           src="https://randomuser.me/api/portraits/women/52.jpg"
         />

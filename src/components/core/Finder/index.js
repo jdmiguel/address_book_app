@@ -10,13 +10,13 @@ const Finder = ({ onChange, isSearching, isMatched }) => (
       onChange={(event) => onChange(event.target.value)}
       autoComplete="nope"
     />
-    {isSearching && <img src={searchingIcon} alt="icon" />}
-    {isMatched && <img src={checkIcon} alt="icon" />}
+    {isSearching && <img src={searchingIcon.src} alt={searchingIcon.alt} />}
+    {isMatched && <img src={checkIcon.src} alt={checkIcon.alt} />}
   </div>
 );
 
 Finder.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   isSearching: PropTypes.bool,
   isMatched: PropTypes.bool,
 };

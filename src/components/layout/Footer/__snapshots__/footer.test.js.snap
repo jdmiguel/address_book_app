@@ -9,7 +9,7 @@ exports[`Component: Footer should render with home link 1`] = `
       href="/"
     >
       <img
-        alt="icon"
+        alt="home"
         src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -69,7 +69,7 @@ exports[`Component: Footer should render with home link and warning msg 1`] = `
     class="warning"
   >
     <img
-      alt="icon"
+      alt="warning"
       src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -116,7 +116,7 @@ exports[`Component: Footer should render with home link and warning msg 1`] = `
   }
 }"
     />
-    While finder is active, users will not be loaded
+    While finder is active, more users will not be loaded by scrolling
   </div>
   <div
     class="container"
@@ -125,7 +125,7 @@ exports[`Component: Footer should render with home link and warning msg 1`] = `
       href="/"
     >
       <img
-        alt="icon"
+        alt="home"
         src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -188,7 +188,7 @@ exports[`Component: Footer should render with settings link 1`] = `
       href="/settings"
     >
       <img
-        alt="icon"
+        alt="settings"
         src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -248,7 +248,7 @@ exports[`Component: Footer should render with settings link and warning msg 1`] 
     class="warning"
   >
     <img
-      alt="icon"
+      alt="warning"
       src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -295,7 +295,7 @@ exports[`Component: Footer should render with settings link and warning msg 1`] 
   }
 }"
     />
-    While finder is active, users will not be loaded
+    While finder is active, more users will not be loaded by scrolling
   </div>
   <div
     class="container"
@@ -304,7 +304,7 @@ exports[`Component: Footer should render with settings link and warning msg 1`] 
       href="/settings"
     >
       <img
-        alt="icon"
+        alt="settings"
         src="function svgrLoader(source) {
   const callback = this.async();
 

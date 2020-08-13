@@ -13,16 +13,22 @@ import switzerlandFlagSrc from '../assets/img/switzerland-flag.png';
 import unitedKingdomFlagSrc from '../assets/img/united-kingdom-flag.png';
 
 // iconPaths
-export const settingsIcon = String(settingsIconSrc);
-export const homeIcon = String(homeIconSrc);
-export const modalIcons = {
-  firstIcon: String(placeIconSrc),
-  secondIcon: String(exploreIconSrc),
-  thirdIcon: String(phoneIconSrc),
+export const settingsIcon = {
+  src: String(settingsIconSrc),
+  alt: 'settings',
 };
-export const warningIcon = String(warningIconSrc);
-export const searchingIcon = String(searchingIconSrc);
-export const checkIcon = String(checkIconSrc);
+export const homeIcon = { src: String(homeIconSrc), alt: 'home' };
+export const modalIcons = {
+  firstIcon: { src: String(placeIconSrc), alt: 'address' },
+  secondIcon: { src: String(exploreIconSrc), alt: 'location' },
+  thirdIcon: { src: String(phoneIconSrc), alt: 'phone' },
+};
+export const warningIcon = { src: String(warningIconSrc), alt: 'warning' };
+export const searchingIcon = {
+  src: String(searchingIconSrc),
+  alt: 'address',
+};
+export const checkIcon = { src: String(checkIconSrc), alt: 'check' };
 
 // imgPaths
 export const spainFlag = String(spainFlagSrc);
@@ -47,6 +53,7 @@ export const literals = {
   loadingText: 'Loading...',
   settingsPageTitle: 'Set one of these nationalities as default',
   finderPlaceholder: 'Start typing to filter by user...',
+  userAltImg: 'user image',
 };
 
 // nationalities values

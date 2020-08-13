@@ -1,5 +1,4 @@
 .finder{
-  padding: 12px 10px;
   background-color: $white;
   border-radius: 4px;
   width: 400px;
@@ -8,11 +7,14 @@
   @include flexContainer($mainAxisAlign:space-between);
   img{
     width: 18px;
+    margin: 0 auto;
   }
 }
 
 input{
+  padding: 12px 10px;
   width: 90%;
+  height: 100%;
   @include font(0.9rem, 300, $primaryDark);
 }
 

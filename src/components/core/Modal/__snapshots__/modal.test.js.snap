@@ -21,7 +21,7 @@ exports[`Component: Modal should render and call onClose function 1`] = `
   >
     <div>
       <img
-        alt="detail img"
+        alt="user image"
         class="shadow-img"
         height="90px"
         src="https://randomuser.me/api/portraits/women/52.jpg"
@@ -42,7 +42,7 @@ exports[`Component: Modal should render and call onClose function 1`] = `
     <div>
       <p>
         <img
-          alt="icon"
+          alt="address"
           src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -93,7 +93,7 @@ exports[`Component: Modal should render and call onClose function 1`] = `
       </p>
       <p>
         <img
-          alt="icon"
+          alt="location"
           src="function svgrLoader(source) {
   const callback = this.async();
 
@@ -144,7 +144,7 @@ exports[`Component: Modal should render and call onClose function 1`] = `
       </p>
       <p>
         <img
-          alt="icon"
+          alt="phone"
           src="function svgrLoader(source) {
   const callback = this.async();
 

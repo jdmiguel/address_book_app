@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Header should render with Finder 1`] = `
+exports[`Component: Header should render with Finder and call onChange function 1`] = `
 <header
   class=""
 >
@@ -14,11 +14,14 @@ exports[`Component: Header should render with Finder 1`] = `
         ADDRESS BOOK
       </h1>
     </a>
-    <input
-      autocomplete="nope"
-      class=""
-      placeholder="Start typing to filter by user..."
-    />
+    <div
+      class="finder"
+    >
+      <input
+        autocomplete="nope"
+        placeholder="Start typing to filter by user..."
+      />
+    </div>
   </div>
 </header>
 `;

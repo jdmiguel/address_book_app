@@ -143,12 +143,11 @@ const HomePage = () => {
 
   const handleSearch = useCallback(
     (search) => {
-      setIsFiltering(!!search);
-
       const filteredUsers = users.filter(
         (user) => user.name.toLowerCase() === search.toLowerCase(),
       );
 
+      setIsFiltering(!!search);
       setIsMatched(filteredUsers.length > 0);
       setFilteredUsers(filteredUsers);
     },

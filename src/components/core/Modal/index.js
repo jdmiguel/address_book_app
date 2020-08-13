@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import Modal from 'react-modal';
 
+import { literals } from '../../../utils/constants';
+import { iconModel } from '../../../utils/models';
+
 const CustomModal = ({
   data: {
     imgSrc,
@@ -40,7 +43,7 @@ const CustomModal = ({
           height="90px"
           className="shadow-img"
           src={imgSrc}
-          alt="detail img"
+          alt={literals.userAltImg}
         />
         <div>
           <h3>{firstText}</h3>
@@ -50,15 +53,15 @@ const CustomModal = ({
       </div>
       <div>
         <p>
-          <img src={firstIcon} alt="icon" />
+          <img src={firstIcon.src} alt={firstIcon.alt} />
           {`${fourthText}, ${fifthText}`}
         </p>
         <p>
-          <img src={secondIcon} alt="icon" />
+          <img src={secondIcon.src} alt={secondIcon.alt} />
           {`${sixthText} (${seventhText}), ${eighthText}`}
         </p>
         <p>
-          <img src={thirdIcon} alt="icon" />
+          <img src={thirdIcon.src} alt={thirdIcon.alt} />
           {`${ninethText}, ${tenthText}`}
         </p>
       </div>
@@ -81,9 +84,9 @@ CustomModal.propTypes = {
     tenthText: PropTypes.string,
   }).isRequired,
   icons: PropTypes.shape({
-    firstIcon: PropTypes.string,
-    secondIcon: PropTypes.string,
-    thirdIcon: PropTypes.string,
+    firstIcon: iconModel,
+    secondIcon: iconModel,
+    thirdIcon: iconModel,
   }).isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
