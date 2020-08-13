@@ -54,35 +54,39 @@ const HomePage = ({ currentNationalityId }) => {
   const usersContainer = useRef();
   const pageCounter = useRef(1);
 
-  const handleGetUsers = () => {
+  const handleGetUsers = useCallback(() => {
     setIsLoading(true);
-    getUsers(pageCounter.current, currentNationalityId).then((users) => {
-      const formattedUsers = users.results.map((user) => {
-        const { picture, name, login, email, location, phone, cell } = user;
+    getUsers(pageCounter.current, currentNationalityId)
+      .then((users) => {
+        const formattedUsers = users.results.map((user) => {
+          const { picture, name, login, email, location, phone, cell } = user;
 
-        return {
-          imgSrc: picture.large,
-          thumbSrc: picture.medium,
-          name: `${name.first} ${name.last}`,
-          id: login.uuid,
-          username: login.username,
-          email,
-          streetName: location.street.name,
-          streetNumber: location.street.number,
-          city: location.city,
-          state: location.state,
-          postcode: location.postcode,
-          phone,
-          cell,
-        };
-      });
+          return {
+            imgSrc: picture.large,
+            thumbSrc: picture.medium,
+            name: `${name.first} ${name.last}`,
+            id: login.uuid,
+            username: login.username,
+            email,
+            streetName: location.street.name,
+            streetNumber: location.street.number,
+            city: location.city,
+            state: location.state,
+            postcode: location.postcode,
+            phone,
+            cell,
+          };
+        });
 
-      usersDispatch({
-        type: pageCounter.current === 1 ? 'set' : 'add',
-        users: formattedUsers,
+        usersDispatch({
+          type: pageCounter.current === 1 ? 'set' : 'add',
+          users: formattedUsers,
+        });
+      })
+      .catch((error) => {
+        throw new Error(error);
       });
-    });
-  };
+  }, [currentNationalityId]);
 
   useScrollPosY(
     ({ posY }) => {
@@ -108,7 +112,7 @@ const HomePage = ({ currentNationalityId }) => {
         handleGetUsers();
       }
     }
-  }, [users, isFiltering]);
+  }, [users, isFiltering, handleGetUsers]);
 
   useEffect(() => {
     if (modalData) {
