@@ -51,7 +51,7 @@ const HomePage = ({ currentNationalityId }) => {
   const [isFiltering, setIsFiltering] = useState(false);
   const [isMatched, setIsMatched] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [onError, setOnError] = useState(true);
+  const [onError, setOnError] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();

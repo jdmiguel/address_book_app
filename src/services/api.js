@@ -4,7 +4,6 @@ const getUsers = (page = 1, nat) => {
   const params = {
     page,
     results: 50,
-    seed: 'abc',
   };
   const updatedParams = nat ? { ...params, nat } : params;
 
