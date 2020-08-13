@@ -7,6 +7,7 @@ import Footer from './Footer';
 const Layout = ({
   children,
   withFinder,
+  translateHeader,
   withSettings,
   withWarning,
   onChangeFinder,
@@ -15,18 +16,20 @@ const Layout = ({
 }) => (
   <div className="layout">
     <Header
+      isTranslated={translateHeader}
       withFinder={withFinder}
       onChangeFinder={onChangeFinder}
       isSearching={isSearching}
       isMatched={isMatched}
     />
-    <main>{children}</main>
+    <main className={`${!withFinder ? 'basic' : ''}`}>{children}</main>
     <Footer withSettings={withSettings} withWarning={withWarning} />
   </div>
 );
 
 Layout.propTypes = {
   withFinder: PropTypes.bool,
+  translateHeader: PropTypes.bool,
   withSettings: PropTypes.bool,
   withWarning: PropTypes.bool,
   onChangeFinder: PropTypes.func,
@@ -36,6 +39,7 @@ Layout.propTypes = {
 
 Layout.defaultProps = {
   withFinder: false,
+  translateHeader: false,
   withSettings: false,
   withWarning: false,
   isSearching: false,

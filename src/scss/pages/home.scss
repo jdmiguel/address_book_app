@@ -1,7 +1,7 @@
 .loader{
   position: fixed;
   left: 0;
-  top: 130px;
+  top: 140px;
   z-index: 1;
   @include flexContainer();
   width: 100%;
@@ -12,6 +12,9 @@
   @include transition(opacity, 0.25s);
   &.active{
     opacity: 1;
+  }
+  &.translated{
+    top: 85px;
   }
   > div{
     &:first-of-type{
@@ -26,9 +29,6 @@
     &:last-of-type{
       @include font(1rem, 500, $primary);
     }
-  }
-  @media only screen and (min-width: 768px) {
-    top: 120px;
   }
 }
 

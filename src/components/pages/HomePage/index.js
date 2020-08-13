@@ -25,8 +25,12 @@ import getUsers from '../../../services/api';
 
 const ErrorMsg = () => <div className="error">{literals.errorText}</div>;
 
-const Loader = ({ active }) => (
-  <div className={`loader${active ? ' active' : ''}`}>
+const Loader = ({ active, translated }) => (
+  <div
+    className={`loader${active ? ' active' : ''}${
+      translated ? ' translated' : ''
+    }`}
+  >
     <div />
     <div>{literals.loadingText}</div>
   </div>
@@ -52,6 +56,7 @@ const HomePage = ({ currentNationalityId }) => {
   const [isMatched, setIsMatched] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [onError, setOnError] = useState(false);
+  const [hasScroll, setHasScroll] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();
@@ -99,6 +104,8 @@ const HomePage = ({ currentNationalityId }) => {
       const scrollDownLimit =
         posY > usersContainer.current.clientHeight / scrollFactor &&
         allowedPages;
+
+      setHasScroll(!!posY);
 
       if (scrollDownLimit && allowedPages && !isLoading && !isFiltering) {
         handleGetUsers(pageCounter.current);
@@ -169,6 +176,7 @@ const HomePage = ({ currentNationalityId }) => {
     <Layout
       withFinder
       withSettings
+      translateHeader={hasScroll}
       isSearching={isFiltering && !isMatched}
       isMatched={isFiltering && isMatched}
       withWarning={isFiltering}
@@ -181,7 +189,7 @@ const HomePage = ({ currentNationalityId }) => {
         closeModal={closeModal}
       />
       <div className="container">
-        <Loader active={isLoading} />
+        <Loader active={isLoading} translated={hasScroll} />
         {onError ? (
           <ErrorMsg />
         ) : (

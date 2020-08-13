@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -20,6 +20,10 @@ const SettingsPage = ({
   handleDeactiveAllNationalities,
 }) => {
   const [currentId, setCurrentId] = useState(currentNationalityId);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleNationalityCardClick = useCallback(
     (id) => {

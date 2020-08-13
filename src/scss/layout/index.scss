@@ -8,9 +8,8 @@ main{
   width: 100%;
   max-width: 1100px;
   margin: 40px auto 100px;
-  padding-top: 90px;
-  @media only screen and (min-width: 768px) {
-    padding-top: 80px;
+  &:not(.basic){
+    padding-top: 100px;
   }
 }
 
@@ -19,11 +18,10 @@ h2{
   text-align: center;
   line-height: 1.7rem;
   width: 80%;
-  margin: 30px auto;
+  margin: 0 auto 40px;
   @media only screen and (min-width: 768px) {
     font-size: 1.8rem;
     width: 100%;
-    margin: 40px auto;
   }
   @media only screen and (min-width: 1200px) {
     font-size: 2rem;
