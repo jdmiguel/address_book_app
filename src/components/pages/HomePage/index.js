@@ -26,7 +26,18 @@ import getUsers from '../../../services/api';
 
 const { errorText, loadingText, endUsersText } = literals;
 
+/**
+ * Displays error message
+ * @component ErrorMsg
+ */
+
 const ErrorMsg = () => <div className="error">{errorText}</div>;
+
+/**
+ * Displays a loader animation
+ * @param {boolean} active - set loader as active or not what implicates different styles
+ * @param {boolean} translated - set loader as translated or not what implicates different styles
+ */
 
 const Loader = ({ active, translated }) => (
   <div
@@ -49,6 +60,13 @@ const usersReducer = (users, action) => {
       return users;
   }
 };
+
+/**
+ * Displays the home page of the application by handling the load of users
+ * and filtering visible users through the Finder component
+ * @component HomePage
+ * @param {string} currentNationalityId - filter the users request by nationality
+ */
 
 const HomePage = ({ currentNationalityId }) => {
   const [users, usersDispatch] = useReducer(usersReducer, []);
