@@ -43,8 +43,10 @@ The source files are in src folder that is composed of following folders:
 - **store**: Global state by implementing reducers, actions and actionTypes
 - **utils**: Supporting constants and models
 
+Finally, Github was used in order to handle this repository. I worked with different branches regarding the required tasks and when these ones were ready I merged the metioned branches to master branch by using Pull Requests.
+
 ### TESTING
 
-I added unit tests to Layout and Core components with JEST and REACT-TESTING-LIBRARY.
+I added unit tests to Layout and Core components with Jest and React-testing-library.
 
 
