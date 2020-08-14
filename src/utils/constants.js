@@ -80,7 +80,8 @@ export const nationalities = {
 // scroll utils
 export const scrollTrigger = 15;
 export const scrollFactor = 1.6;
-export const maxPages = 20;
+export const maxRequests = 11;
+export const batchUsersByRequest = 100;
 
 // defaults
 export const defaultImgSrc = 'https://randomuser.me/api/portraits/women/52.jpg';

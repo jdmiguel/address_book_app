@@ -1,10 +1,4 @@
-import React, {
-  useReducer,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -14,11 +8,12 @@ import Modal from '../../core/Modal';
 
 import {
   literals,
+  batchUsersByRequest,
   defaultModalData,
   modalIcons,
   scrollTrigger,
   scrollFactor,
-  maxPages,
+  maxRequests,
 } from '../../../utils/constants';
 
 import useScrollPosY from '../../hooks/useScrollPosY';
@@ -51,17 +46,6 @@ const Loader = ({ active, translated }) => (
   </div>
 );
 
-const usersReducer = (users, action) => {
-  switch (action.type) {
-    case 'set':
-      return action.users;
-    case 'add':
-      return [...users, ...action.users];
-    default:
-      return users;
-  }
-};
-
 /**
  * Displays the home page of the application by handling the load of users
  * and filtering visible users through the Finder component
@@ -70,19 +54,23 @@ const usersReducer = (users, action) => {
  */
 
 const HomePage = ({ currentNationalityId }) => {
-  const [users, usersDispatch] = useReducer(usersReducer, []);
+  const [renderedUsers, setRenderedUsers] = useState([]);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [modalData, setModalData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [isFiltering, setIsFiltering] = useState(false);
   const [isMatched, setIsMatched] = useState(false);
   const [isEndLoad, setIsEndLoad] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const [onError, setOnError] = useState(false);
   const [onTranslateHeader, setOnTranslateHeader] = useState(false);
-  const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();
+  const renderStep = useRef(1);
   const pageCounter = useRef(1);
 
   const handleGetUsers = useCallback(() => {
@@ -108,32 +96,50 @@ const HomePage = ({ currentNationalityId }) => {
           };
         });
 
-        usersDispatch({
-          type: pageCounter.current === 1 ? 'set' : 'add',
-          users: formattedUsers,
-        });
+        const currentRenderedUsers = formattedUsers.slice(
+          0,
+          batchUsersByRequest / 2,
+        );
+        const currentLoadedUsers = formattedUsers.slice(
+          batchUsersByRequest / 2,
+          formattedUsers.length + 1,
+        );
+
+        setLoadedUsers(currentLoadedUsers);
+        setRenderedUsers(
+          pageCounter.current === 1
+            ? currentRenderedUsers
+            : [...renderedUsers, ...currentRenderedUsers],
+        );
       })
       .catch((error) => {
         console.log(`Request has failed because of ${error}`);
         setOnError(true);
       });
-  }, [currentNationalityId]);
+  }, [renderedUsers, currentNationalityId]);
+
+  const handleLoadedUsers = useCallback(() => {
+    setRenderedUsers([...renderedUsers, ...loadedUsers]);
+  }, [renderedUsers, loadedUsers]);
 
   useEffect(() => {
     if (!isFiltering) {
-      if (users.length > 0) {
-        pageCounter.current += 1;
-        setIsLoading(false);
+      if (renderedUsers.length > 0) {
+        if (isLoading) {
+          pageCounter.current += 1;
+          setIsLoading(false);
+        }
+        renderStep.current += 1;
       } else {
         handleGetUsers();
       }
     }
 
-    if (pageCounter.current === maxPages) {
-      console.log('end load');
+    if (pageCounter.current === maxRequests && !isEndLoad) {
+      handleLoadedUsers();
       setIsEndLoad(true);
     }
-  }, [users, isFiltering, handleGetUsers]);
+  }, [renderedUsers]);
 
   useEffect(() => {
     if (modalData) {
@@ -144,18 +150,29 @@ const HomePage = ({ currentNationalityId }) => {
   useScrollPosY(
     ({ posY }) => {
       const { current: counter } = pageCounter;
-      const allowedPages = counter <= maxPages;
-      const scrollDownLimit =
-        posY > usersContainer.current.clientHeight / scrollFactor &&
-        allowedPages;
+      const { current: step } = renderStep;
 
+      const isLoadAllowed = counter <= maxRequests;
+      const scrollDownLimit =
+        posY > usersContainer.current.clientHeight / scrollFactor;
       setOnTranslateHeader(posY > scrollTrigger);
 
-      if (scrollDownLimit && !isEndLoad && !isLoading && !isFiltering) {
-        handleGetUsers(pageCounter.current);
+      if (
+        isLoadAllowed &&
+        scrollDownLimit &&
+        !isEndLoad &&
+        !isLoading &&
+        !isFiltering
+      ) {
+        if (step % 2 === 0) {
+          handleLoadedUsers();
+        } else {
+          handleGetUsers(counter);
+        }
       }
     },
-    [isLoading, isFiltering],
+    [isLoading, isFiltering, isEndLoad],
+    100,
   );
 
   const closeModal = () => {
@@ -164,7 +181,7 @@ const HomePage = ({ currentNationalityId }) => {
 
   const handleUserCardClick = useCallback(
     (id) => {
-      const user = users.find((user) => user.id === id);
+      const user = renderedUsers.find((user) => user.id === id);
       const currentModalData = {
         imgSrc: user.imgSrc,
         firstText: user.name,
@@ -181,12 +198,12 @@ const HomePage = ({ currentNationalityId }) => {
 
       setModalData(currentModalData);
     },
-    [users],
+    [renderedUsers],
   );
 
   const handleSearch = useCallback(
     (search) => {
-      const filteredUsers = users.filter(
+      const filteredUsers = renderedUsers.filter(
         (user) => user.name.toLowerCase() === search.toLowerCase(),
       );
 
@@ -194,10 +211,10 @@ const HomePage = ({ currentNationalityId }) => {
       setIsMatched(filteredUsers.length > 0);
       setFilteredUsers(filteredUsers);
     },
-    [users],
+    [renderedUsers],
   );
 
-  const currentUsers = filteredUsers.length > 0 ? filteredUsers : users;
+  const currentUsers = filteredUsers.length > 0 ? filteredUsers : renderedUsers;
 
   return (
     <Layout

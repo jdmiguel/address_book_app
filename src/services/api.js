@@ -1,9 +1,11 @@
 import request from '.';
 
+import { batchUsersByRequest } from '../utils/constants';
+
 const getUsers = (page = 1, nat) => {
   const params = {
     page,
-    results: 50,
+    results: batchUsersByRequest,
   };
   const updatedParams = nat ? { ...params, nat } : params;
 
