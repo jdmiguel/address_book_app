@@ -12,7 +12,7 @@ import franceFlagSrc from '../assets/img/france-flag.png';
 import switzerlandFlagSrc from '../assets/img/switzerland-flag.png';
 import unitedKingdomFlagSrc from '../assets/img/united-kingdom-flag.png';
 
-// iconPaths
+// icons config
 export const settingsIcon = {
   src: String(settingsIconSrc),
   alt: 'settings',
@@ -53,7 +53,7 @@ export const literals = {
   endUsersText: 'END OF USERS CATALOG',
 };
 
-// nationalities values
+// nationalities config
 export const nationalities = {
   swiss: {
     id: 'ch',
@@ -78,6 +78,7 @@ export const nationalities = {
 };
 
 // scroll utils
+export const scrollTrigger = 15;
 export const scrollFactor = 1.6;
 export const maxPages = 20;
 

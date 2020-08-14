@@ -16,6 +16,7 @@ import {
   literals,
   defaultModalData,
   modalIcons,
+  scrollTrigger,
   scrollFactor,
   maxPages,
 } from '../../../utils/constants';
@@ -78,7 +79,7 @@ const HomePage = ({ currentNationalityId }) => {
   const [isEndLoad, setIsEndLoad] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [onError, setOnError] = useState(false);
-  const [hasScroll, setHasScroll] = useState(false);
+  const [onTranslateHeader, setOnTranslateHeader] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   const usersContainer = useRef();
@@ -127,7 +128,7 @@ const HomePage = ({ currentNationalityId }) => {
         handleGetUsers();
       }
     }
-    console.log('pageCounter.counter: ', pageCounter.current);
+
     if (pageCounter.current === maxPages) {
       console.log('end load');
       setIsEndLoad(true);
@@ -148,7 +149,7 @@ const HomePage = ({ currentNationalityId }) => {
         posY > usersContainer.current.clientHeight / scrollFactor &&
         allowedPages;
 
-      setHasScroll(!!posY);
+      setOnTranslateHeader(posY > scrollTrigger);
 
       if (scrollDownLimit && !isEndLoad && !isLoading && !isFiltering) {
         handleGetUsers(pageCounter.current);
@@ -202,7 +203,7 @@ const HomePage = ({ currentNationalityId }) => {
     <Layout
       withFinder
       withSettings
-      translateHeader={hasScroll}
+      translateHeader={onTranslateHeader}
       isSearching={isFiltering && !isMatched}
       isMatched={isFiltering && isMatched}
       withWarning={isFiltering && !isEndLoad}
@@ -219,7 +220,7 @@ const HomePage = ({ currentNationalityId }) => {
           <ErrorMsg />
         ) : (
           <>
-            <Loader active={isLoading} translated={hasScroll} />
+            <Loader active={isLoading} translated={onTranslateHeader} />
             <div ref={usersContainer} className="row users-container">
               {currentUsers.length > 0 &&
                 currentUsers.map((currentUsers) => (
