@@ -1,7 +1,7 @@
 {
-  "name": "address-app-book",
+  "name": "address-book-app",
   "version": "1.0.0",
-  "description": "Address app book with React and Redux",
+  "description": "Address book app with React and Redux",
   "main": "index.js",
   "repository": "https://github.com/jdmiguel/address_app_book",
   "author": "jdmiguel",
