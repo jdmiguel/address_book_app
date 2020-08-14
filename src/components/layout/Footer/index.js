@@ -9,6 +9,13 @@ import {
   warningIcon,
 } from '../../../utils/constants';
 
+/**
+ * Displays the footer of the application
+ * @component Footer
+ * @param {boolean} withWarning - show / hide warning message depending on Finder is active
+ * @param {boolean} withSettings - show either Settings link or Home link
+ */
+
 const {
   footer: {
     text,

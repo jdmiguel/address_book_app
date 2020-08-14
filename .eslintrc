@@ -20,7 +20,7 @@
     "react/prop-types": 0,
     "react/no-find-dom-node": 0,
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off",
     "no-shadow": 0,
     "no-restricted-syntax": 0
   },

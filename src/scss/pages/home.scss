@@ -1,7 +1,7 @@
 .loader{
   position: fixed;
   left: 0;
-  top: 130px;
+  top: 140px;
   z-index: 1;
   @include flexContainer();
   width: 100%;
@@ -12,6 +12,9 @@
   @include transition(opacity, 0.25s);
   &.active{
     opacity: 1;
+  }
+  &.translated{
+    top: 85px;
   }
   > div{
     &:first-of-type{
@@ -27,9 +30,6 @@
       @include font(1rem, 500, $primary);
     }
   }
-  @media only screen and (min-width: 768px) {
-    top: 120px;
-  }
 }
 
 @keyframes loader-animation {
@@ -43,4 +43,18 @@
 
 .users-container{
   margin-top: 50px;
+}
+
+.end-users{
+  @include font(1.2rem, 500, $primary);
+  letter-spacing: 0.05rem;
+  margin: 10px 0;
+  @include flexContainer();
+}
+
+.error{
+  margin-top: 150px;
+  @include flexContainer();
+  @include font(1.2rem, 500, $primary);
+  text-align: center;
 }

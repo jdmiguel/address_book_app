@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 
 import { literals, searchingIcon, checkIcon } from '../../../utils/constants';
 
+/**
+ * Displays a input with an specific search from user
+ * @component Finder
+ * @param {function} onChange - executed callback when new characters are added in the input
+ * @param {boolean} isSearching - show / hide search icon
+ * @param {boolean} isMatched - show / hide match icon
+ */
+
 const Finder = ({ onChange, isSearching, isMatched }) => (
   <div className="finder">
     <input

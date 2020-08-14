@@ -12,7 +12,7 @@ import franceFlagSrc from '../assets/img/france-flag.png';
 import switzerlandFlagSrc from '../assets/img/switzerland-flag.png';
 import unitedKingdomFlagSrc from '../assets/img/united-kingdom-flag.png';
 
-// iconPaths
+// icons config
 export const settingsIcon = {
   src: String(settingsIconSrc),
   alt: 'settings',
@@ -48,9 +48,12 @@ export const literals = {
   settingsPageTitle: 'Set one of these nationalities as default',
   finderPlaceholder: 'Start typing to filter by user...',
   userAltImg: 'user image',
+  errorText:
+    'Sorry but the last request has failed, try again by reloading the page ;)',
+  endUsersText: 'END OF USERS CATALOG',
 };
 
-// nationalities values
+// nationalities config
 export const nationalities = {
   swiss: {
     id: 'ch',
@@ -58,7 +61,7 @@ export const nationalities = {
     text: 'Swiss',
   },
   spanish: {
-    id: 'sp',
+    id: 'es',
     src: String(spainFlagSrc),
     text: 'Spanish',
   },
@@ -75,8 +78,10 @@ export const nationalities = {
 };
 
 // scroll utils
+export const scrollTrigger = 50;
 export const scrollFactor = 1.6;
-export const maxPages = 20;
+export const maxRequests = 11;
+export const batchUsersByRequest = 100;
 
 // defaults
 export const defaultImgSrc = 'https://randomuser.me/api/portraits/women/52.jpg';

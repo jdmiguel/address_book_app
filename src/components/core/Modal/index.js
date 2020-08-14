@@ -6,6 +6,15 @@ import Modal from 'react-modal';
 import { literals } from '../../../utils/constants';
 import { iconModel } from '../../../utils/models';
 
+/**
+ * Displays a modal with further user information
+ * @component Modal
+ * @param {object} data -  all the user data
+ * @param {object} icons - all icons involved in Modal
+ * @param {boolean} isOpen - show / hide modal
+ * @param {function} closeModal - executed callback when modal is closed
+ */
+
 const CustomModal = ({
   data: {
     imgSrc,
@@ -38,13 +47,7 @@ const CustomModal = ({
     </div>
     <div className="modal-content">
       <div>
-        <img
-          width="90px"
-          height="90px"
-          className="shadow-img"
-          src={imgSrc}
-          alt={literals.userAltImg}
-        />
+        <img className="shadow-img" src={imgSrc} alt={literals.userAltImg} />
         <div>
           <h3>{firstText}</h3>
           <p>{secondText}</p>
