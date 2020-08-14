@@ -23,7 +23,9 @@ import useScrollPosY from '../../hooks/useScrollPosY';
 
 import getUsers from '../../../services/api';
 
-const ErrorMsg = () => <div className="error">{literals.errorText}</div>;
+const { errorText, loadingText, endUsersText } = literals;
+
+const ErrorMsg = () => <div className="error">{errorText}</div>;
 
 const Loader = ({ active, translated }) => (
   <div
@@ -32,7 +34,7 @@ const Loader = ({ active, translated }) => (
     }`}
   >
     <div />
-    <div>{literals.loadingText}</div>
+    <div>{loadingText}</div>
   </div>
 );
 
@@ -54,6 +56,7 @@ const HomePage = ({ currentNationalityId }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFiltering, setIsFiltering] = useState(false);
   const [isMatched, setIsMatched] = useState(false);
+  const [isEndLoad, setIsEndLoad] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [onError, setOnError] = useState(false);
   const [hasScroll, setHasScroll] = useState(false);
@@ -96,23 +99,6 @@ const HomePage = ({ currentNationalityId }) => {
       });
   }, [currentNationalityId]);
 
-  useScrollPosY(
-    ({ posY }) => {
-      const { current: counter } = pageCounter;
-      const allowedPages = counter < maxPages;
-      const scrollDownLimit =
-        posY > usersContainer.current.clientHeight / scrollFactor &&
-        allowedPages;
-
-      setHasScroll(!!posY);
-
-      if (scrollDownLimit && allowedPages && !isLoading && !isFiltering) {
-        handleGetUsers(pageCounter.current);
-      }
-    },
-    [isLoading, isFiltering],
-  );
-
   useEffect(() => {
     if (!isFiltering) {
       if (users.length > 0) {
@@ -122,6 +108,11 @@ const HomePage = ({ currentNationalityId }) => {
         handleGetUsers();
       }
     }
+    console.log('pageCounter.counter: ', pageCounter.current);
+    if (pageCounter.current === maxPages) {
+      console.log('end load');
+      setIsEndLoad(true);
+    }
   }, [users, isFiltering, handleGetUsers]);
 
   useEffect(() => {
@@ -129,6 +120,23 @@ const HomePage = ({ currentNationalityId }) => {
       setModalIsOpen(true);
     }
   }, [modalData]);
+
+  useScrollPosY(
+    ({ posY }) => {
+      const { current: counter } = pageCounter;
+      const allowedPages = counter <= maxPages;
+      const scrollDownLimit =
+        posY > usersContainer.current.clientHeight / scrollFactor &&
+        allowedPages;
+
+      setHasScroll(!!posY);
+
+      if (scrollDownLimit && !isEndLoad && !isLoading && !isFiltering) {
+        handleGetUsers(pageCounter.current);
+      }
+    },
+    [isLoading, isFiltering],
+  );
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -178,7 +186,7 @@ const HomePage = ({ currentNationalityId }) => {
       translateHeader={hasScroll}
       isSearching={isFiltering && !isMatched}
       isMatched={isFiltering && isMatched}
-      withWarning={isFiltering}
+      withWarning={isFiltering && !isEndLoad}
       onChangeFinder={handleSearch}
     >
       <Modal
@@ -209,6 +217,11 @@ const HomePage = ({ currentNationalityId }) => {
                   />
                 ))}
             </div>
+            {isEndLoad && (
+              <div ref={usersContainer} className="row end-users">
+                {endUsersText}
+              </div>
+            )}
           </>
         )}
       </div>

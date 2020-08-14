@@ -50,6 +50,7 @@ export const literals = {
   userAltImg: 'user image',
   errorText:
     'Sorry but the last request has failed, try again by reloading the page ;)',
+  endUsersText: 'END OF USERS CATALOG',
 };
 
 // nationalities values

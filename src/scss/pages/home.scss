@@ -45,6 +45,13 @@
   margin-top: 50px;
 }
 
+.end-users{
+  @include font(1.2rem, 500, $primary);
+  letter-spacing: 0.05rem;
+  margin: 10px 0;
+  @include flexContainer();
+}
+
 .error{
   margin-top: 150px;
   @include flexContainer();
