@@ -34,10 +34,10 @@ The source files are in src folder that is composed of following folders:
 
 * **assets**: Images and html generator (.ejs)
 * **components**: App components organized by the following folders:
-        * *core*: Presentational components related to UI elements
-        * *hooks*: Custom hook components
-        * *layout*: Presentational components related to the layout of the application
-        * *pages*: Container components related to the pages of the application
+    * **core**: Presentational components related to UI elements
+    * **hooks**: Custom hook components
+    * **layout**: Presentational components related to the layout of the application
+    * **pages**: Container components related to the pages of the application
 - **scss**: Styles of application with the same structure as components folder by adding a utils folder with vars, mixins, etc...
 - **services**: Api requests
 - **store**: Global state by implementing reducers, actions and actionTypes
