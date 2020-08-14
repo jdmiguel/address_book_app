@@ -236,7 +236,7 @@ const HomePage = ({ currentNationalityId }) => {
                   />
                 ))}
             </div>
-            {isEndLoad && (
+            {isEndLoad && !isMatched && (
               <div ref={usersContainer} className="row end-users">
                 {endUsersText}
               </div>
