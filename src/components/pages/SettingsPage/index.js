@@ -70,6 +70,7 @@ SettingsPage.propTypes = {
       active: PropTypes.boolean,
     }),
   ),
+  currentNationalityId: PropTypes.string,
 };
 
 const mapStateToProps = ({ nationalities, currentNationalityId }) => ({

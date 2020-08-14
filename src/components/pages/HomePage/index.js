@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Layout from '../../layout';
 import Card from '../../core/Card';
@@ -232,5 +233,9 @@ const HomePage = ({ currentNationalityId }) => {
 const mapStateToProps = ({ currentNationalityId }) => ({
   currentNationalityId,
 });
+
+HomePage.propTypes = {
+  currentNationalityId: PropTypes.string,
+};
 
 export default connect(mapStateToProps)(HomePage);
