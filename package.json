@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env MODE='development' webpack-dev-server --hot",
-    "build": "rimraf ./dist && cross-env MODE='production' webpack --config webpack.prod.config.js",
+    "build": "rimraf ./dist && cross-env MODE='production' webpack --config webpack.prod.config.js && echo '/* /index.html 200' | cat >dist/_redirects",
     "test": "jest --watch"
   },
   "dependencies": {
