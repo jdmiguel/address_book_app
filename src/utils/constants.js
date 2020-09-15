@@ -34,7 +34,7 @@ export const checkIcon = { src: String(checkIconSrc), alt: 'check' };
 export const literals = {
   logo: 'ADDRESS BOOK',
   footer: {
-    text: 'This is a coding exercise for Sherpany company',
+    text: 'COPYRIGHT © ALL RIGHTS RESERVED',
     link: {
       settingsText: 'Go to Settings',
       settingsLink: '/settings',
